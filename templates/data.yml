@@ -1,0 +1,74 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: |
+  Deploys Slack Quiz Data Tables
+
+Parameters:
+  ServiceName:
+    Description: The name of the service that you are deploying
+    Type: String
+    Default: SlackBot
+  Stage:
+    Description: The Stage/Environment you are building in.
+    Type: String
+    Default: dev
+    AllowedValues:
+    - local-dev
+    - dev
+    - test
+    - prod
+
+
+Resources:
+  QuizQuestionTable:
+    Type: AWS::DynamoDB::Table
+    Properties:
+      AttributeDefinitions:
+        - AttributeName: quizId
+          AttributeType: S
+        - AttributeName: questionRange
+          AttributeType: S
+      KeySchema:
+        - AttributeName: quizId
+          KeyType: HASH
+        - AttributeName: questionRange
+          KeyType: RANGE
+      TableName:
+        Fn::Sub: ${Stage}-${ServiceName}-questions
+      ProvisionedThroughput:
+        ReadCapacityUnits: 5
+        WriteCapacityUnits: 5
+  LeaderboardTable:
+    Type: AWS::DynamoDB::Table
+    Properties:
+      AttributeDefinitions:
+        - AttributeName: quizId
+          AttributeType: S
+        - AttributeName: teamRange
+          AttributeType: S
+      KeySchema:
+        - AttributeName: quizId
+          KeyType: HASH
+        - AttributeName: teamRange
+          KeyType: RANGE
+      TableName:
+        Fn::Sub: ${Stage}-${ServiceName}-leaderboard
+      ProvisionedThroughput:
+        ReadCapacityUnits: 5
+        WriteCapacityUnits: 5
+
+Outputs:
+  QuizQuestionsTable:
+    Description: The name of the quiz questions table
+    Value:
+      Ref: QuizQuestionTable
+    Export:
+      Name:
+        Fn::Sub: ${Stage}-${ServiceName}-questions
+  LeaderboardTable:
+    Description: The name of the leader board table
+    Value:
+      Ref: LeaderboardTable
+    Export:
+      Name:
+        Fn::Sub: ${Stage}-${ServiceName}-leaderboard

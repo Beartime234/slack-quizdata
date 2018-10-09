@@ -1,0 +1,14 @@
+version: 0.2
+
+phases:
+  install:
+    commands:
+      - echo -- Installing Environment --
+      - pipenv install
+  build:
+    commands:
+      - echo -- Running Build Commands --
+      - pipenv run python -m uploader.main
+artifacts:
+  files:
+    - questions/*.yml

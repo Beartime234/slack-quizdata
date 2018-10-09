@@ -1,0 +1,6 @@
+
+
+class BadQuestion(Exception):
+    pass
+
+

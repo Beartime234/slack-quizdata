@@ -1,0 +1,110 @@
+questions:
+- correct_answer: Lickitung
+  id: 8247fb14-a553-4545-a9f6-536d8d675c75
+  incorrect_answers:
+  - Digimon
+  - Tiger
+  - Sphagetti
+  question: Which of the following is a Pokemon?
+- correct_answer: Venusaur
+  id: 3da47a92-338b-4d07-807a-6d5d81f02995
+  incorrect_answers:
+  - Charizard
+  - Pikachu
+  - Blastoise
+  question: What is the 003 Pokemon in the National Pokedex?
+- correct_answer: Mouse
+  id: 80351a35-e5ca-4784-8e5e-cf1e9d71af69
+  incorrect_answers:
+  - Cat
+  - Dog
+  - Rat
+  - Bunny
+  question: What type of animal is Pikachu based of?
+- correct_answer: Cranidos
+  id: 715d8da9-5109-4a3e-a98c-aaa035f698f6
+  incorrect_answers:
+  - Litleo
+  - Honedge
+  - Pikachu
+  - Lucario
+  question: Which of the following is a rock type pokemon?
+- correct_answer: Dialga
+  id: 5f99cf51-66f6-48b9-a732-2ffb740ea4b3
+  incorrect_answers:
+  - Wigglytuff
+  - Pachirisu
+  - Darkrai
+  - Palkia
+  question: Which of these Pokemon controls time?
+- correct_answer: '8'
+  id: d39a75f1-6fff-41ba-98c2-ea26a228adaa
+  incorrect_answers:
+  - '5'
+  - '9'
+  - '7'
+  - '6'
+  question: How many evolutions does Eevee have?
+- correct_answer: '14'
+  id: 3d05351d-f598-4c1e-bff6-08e2dd7384f3
+  incorrect_answers:
+  - '16'
+  - '18'
+  - '17'
+  - '15'
+  question: What level does Cyndaquil evolve?
+- correct_answer: Ground/Flying
+  id: ce68e815-9c7e-42e2-b714-7a2026b101e1
+  incorrect_answers:
+  - Poison/Flying
+  - Ground/Poison
+  - Flying
+  question: What type/s is Gliscor?
+- correct_answer: Manaphy
+  id: 353f4aee-f799-46e1-90db-c2dee1470f0d
+  incorrect_answers:
+  - Munna
+  - Watchdog
+  - Cresselia
+  question: What does the Pokemon Phione evolve into?
+- correct_answer: High Friendship + Evolution
+  id: 1ea3836c-ffbd-40f5-bdc0-d7137b4ce833
+  incorrect_answers:
+  - Evolution at level 18
+  - Thunderstone
+  - Evolution at level 25
+  question: How do you evolve Pichu into Pikachu?
+- correct_answer: 'True'
+  id: f56dc707-0af0-4120-9ab1-9860e510e1c7
+  incorrect_answers:
+  - 'False'
+  question: Lugia is of type Psychic/Flying
+- correct_answer: Ground
+  id: 8c5960d7-c274-4ebf-b963-20c80a2d28cb
+  incorrect_answers:
+  - Rock
+  - Fighting
+  - Electric
+  question: Which type of Pokemon has no effect on Flying Pokemon?
+- correct_answer: Aerodactyl
+  id: 0e2aad68-81ca-42c3-a4ef-4ee0d1522d4c
+  incorrect_answers:
+  - Entei
+  - Ho-oh
+  - Mewtwo
+  - Regice
+  question: Which of these is not a legendary Pokemon?
+- correct_answer: Effort Values
+  id: 19763b0f-d6fa-46cc-9419-d844dd649f6c
+  incorrect_answers:
+  - Evolution
+  - Easy Victory
+  - Eevee
+  question: What does EV stand for?
+- correct_answer: Echidna
+  id: 023a1b3d-aa9f-441b-a47e-e853bcaa8ea0
+  incorrect_answers:
+  - Shrew
+  - Rat
+  - Hedgehog
+  question: What animal is Cyndaquil based off of?

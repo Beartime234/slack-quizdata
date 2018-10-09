@@ -1,0 +1,182 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: |
+  This is a codepipelin
+Parameters:
+  ServiceName:
+    Description: The name of the service that you are deploying
+    Type: String
+    Default: quiz
+  Stage:
+    Description: The Stage/Environment you are building in.
+    Type: String
+    Default: dev
+    AllowedValues:
+    - local-dev
+    - dev
+    - test
+    - prod
+  CodeCommitRepoUrl:
+    Type: String
+    Default: https://github.com/Beartime234/slack-quiz-data.git
+
+Resources:
+  ArtifactBucket:
+    Type: AWS::S3::Bucket
+    Properties:
+      BucketName:
+        Fn::Sub: ${AWS::AccountId}-${Stage}-${ServiceName}-artifacts
+  TestCodebuildProject:
+    Type: AWS::CodeBuild::Project
+    Properties:
+      Name:
+        Fn::Sub: ${Stage}-${ServiceName}-test
+      BadgeEnabled: true
+      ServiceRole: !Ref TestCodeBuildRole
+      Artifacts:
+        Type: NO_ARTIFACTS
+      Environment:
+        Type: LINUX_CONTAINER
+        ComputeType: BUILD_GENERAL1_SMALL
+        Image: aws/codebuild/python:3.6.5
+        PrivilegedMode: true
+      Source:
+        Type: GITHUB
+        Location:
+          Ref: CodeCommitRepoUrl
+        GitCloneDepth: 1
+        ReportBuildStatus: true
+        BuildSpec: codebuild-test.yml
+      TimeoutInMinutes: 5
+  TestCodeBuildRole:
+    Type: AWS::IAM::Role
+    Properties:
+      AssumeRolePolicyDocument:
+        Statement:
+        - Action: ['sts:AssumeRole']
+          Effect: Allow
+          Principal:
+            Service: [codebuild.amazonaws.com]
+        Version: '2012-10-17'
+      Path: /
+      Policies:
+      - PolicyName: CodeBuildAccess
+        PolicyDocument:
+          Version: '2012-10-17'
+          Statement:
+          - Action:
+            - 'logs:*'
+            - 'ec2:CreateNetworkInterface'
+            - 'ec2:DescribeNetworkInterfaces'
+            - 'ec2:DeleteNetworkInterface'
+            - 'ec2:DescribeSubnets'
+            - 'ec2:DescribeSecurityGroups'
+            - 'ec2:DescribeDhcpOptions'
+            - 'ec2:DescribeVpcs'
+            - 'ec2:CreateNetworkInterfacePermission'
+            Effect: Allow
+            Resource: '*'
+  UploadCodebuildProject:
+    Type: AWS::CodeBuild::Project
+    Properties:
+      Name:
+        Fn::Sub: ${Stage}-${ServiceName}-upload
+      BadgeEnabled: true
+      ServiceRole: !Ref UploadCodeBuildRole
+      Artifacts:
+        Type: S3
+        Location:
+          Ref: ArtifactBucket
+        NamespaceType: BUILD_ID
+        Name: quizdata
+        EncryptionDisabled: true
+        Packaging: NONE
+      Environment:
+        Type: LINUX_CONTAINER
+        ComputeType: BUILD_GENERAL1_SMALL
+        Image: aws/codebuild/python:3.6.5
+        PrivilegedMode: true
+        EnvironmentVariables:
+        - Name: QUIZ_QUESTION_TABLE
+          Value:
+            Fn::ImportValue:
+              Fn::Sub:
+                ${Stage}-quizdata-questions
+          Type: PLAINTEXT
+      Source:
+        Type: GITHUB
+        Location:
+          Ref: CodeCommitRepoUrl
+        GitCloneDepth: 1
+        ReportBuildStatus: true
+        BuildSpec: codebuild-upload.yml
+      TimeoutInMinutes: 10
+  UploadCodeBuildRole:
+    Type: AWS::IAM::Role
+    Properties:
+      AssumeRolePolicyDocument:
+        Statement:
+        - Action: ['sts:AssumeRole']
+          Effect: Allow
+          Principal:
+            Service: [codebuild.amazonaws.com]
+        Version: '2012-10-17'
+      Path: /
+      Policies:
+      - PolicyName: CodeBuildAccess
+        PolicyDocument:
+          Version: '2012-10-17'
+          Statement:
+          - Action:
+            - 'logs:*'
+            - 'ec2:CreateNetworkInterface'
+            - 'ec2:DescribeNetworkInterfaces'
+            - 'ec2:DeleteNetworkInterface'
+            - 'ec2:DescribeSubnets'
+            - 'ec2:DescribeSecurityGroups'
+            - 'ec2:DescribeDhcpOptions'
+            - 'ec2:DescribeVpcs'
+            - 'ec2:CreateNetworkInterfacePermission'
+            Effect: Allow
+            Resource: '*'
+      - PolicyName: ArtifactBucketAccess
+        PolicyDocument:
+          Version: '2012-10-17'
+          Statement:
+          - Action:
+            - 's3:PutObject'
+            Effect: Allow
+            Resource:
+              Fn::Sub: ${ArtifactBucket.Arn}/*
+      - PolicyName: QuestionTableAccess
+        PolicyDocument:
+          Version: '2012-10-17'
+          Statement:
+          - Action:
+            - 'dynamodb:PutItem'
+            - 'dynamodb:UpdateItem'
+            - 'dynamodb:BatchGetItem'
+            - 'dynamodb:BatchWriteItem'
+            Effect: Allow
+            Resource:
+              Fn::Sub:
+                - arn:aws:dynamodb:${AWS::Region}:${AWS::AccountId}:table/${QuestionTable}
+                - QuestionTable:
+                    Fn::ImportValue:
+                      Fn::Sub:
+                        ${Stage}-quizdata-questions
+
+Outputs:
+  UploadCodeBuildProject:
+    Description: THe upload codebuild project
+    Value:
+      Ref: UploadCodebuildProject
+    Export:
+      Name:
+        Fn::Sub: ${Stage}-${ServiceName}-upload-codebuild
+  TestCodeBuildProject:
+    Description: The test codebuild project
+    Value:
+      Ref: TestCodebuildProject
+    Export:
+      Name:
+        Fn::Sub: ${Stage}-${ServiceName}-test-codebuild
