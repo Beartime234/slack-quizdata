@@ -96,11 +96,11 @@ Resources:
         Image: aws/codebuild/python:3.6.5
         PrivilegedMode: true
         EnvironmentVariables:
-        - Name: QUIZ_QUESTION_TABLE
+        - Name: QUIZ_STORAGE_TABLE
           Value:
             Fn::ImportValue:
               Fn::Sub:
-                ${Stage}-quizdata-questions
+                ${Stage}-quizdata-storage
           Type: PLAINTEXT
       Source:
         Type: GITHUB
@@ -147,7 +147,7 @@ Resources:
             Effect: Allow
             Resource:
               Fn::Sub: ${ArtifactBucket.Arn}/*
-      - PolicyName: QuestionTableAccess
+      - PolicyName: StorageTableAccess
         PolicyDocument:
           Version: '2012-10-17'
           Statement:
@@ -159,11 +159,11 @@ Resources:
             Effect: Allow
             Resource:
               Fn::Sub:
-                - arn:aws:dynamodb:${AWS::Region}:${AWS::AccountId}:table/${QuestionTable}
-                - QuestionTable:
+                - arn:aws:dynamodb:${AWS::Region}:${AWS::AccountId}:table/${StorageTable}
+                - StorageTable:
                     Fn::ImportValue:
                       Fn::Sub:
-                        ${Stage}-quizdata-questions
+                        ${Stage}-quizdata-storage
 
 Outputs:
   UploadCodeBuildProject:
