@@ -18,7 +18,7 @@ def upload():
     try:
         quiz_question_table = os.environ["QUIZ_STORAGE_TABLE"]
     except KeyError:
-        logger.critical("QUIZ_QUESTION_TABLE Environment Variable Is Not Set")
+        logger.critical("QUIZ_STORAGE_TABLE Environment Variable Is Not Set")
         sys.exit(1)
     quiz_table = boto3.resource("dynamodb").Table(quiz_question_table)
     # Does a check of the questions before uploading them

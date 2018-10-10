@@ -41,7 +41,7 @@ Resources:
 
 Outputs:
   QuizQuestionsTable:
-    Description: The name of the quiz questions table
+    Description: The name of the quiz storage table
     Value:
       Ref: QuizStorageTable
     Export:
