@@ -108,9 +108,10 @@ questions:
   - Rat
   - Hedgehog
   question: What animal is Cyndaquil based off of?
-- correct_answer: "151"
+- correct_answer: '151'
+  id: f5f80563-c768-496b-aec8-8569115728b5
   incorrect_answers:
-  - "150"
-  - "149"
-  - "148"
+  - '150'
+  - '149'
+  - '148'
   question: What number is Mew in the Pokedex?
