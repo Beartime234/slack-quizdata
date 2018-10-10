@@ -20,39 +20,21 @@ Parameters:
 
 
 Resources:
-  QuizQuestionTable:
+  QuizStorageTable:
     Type: AWS::DynamoDB::Table
     Properties:
       AttributeDefinitions:
-        - AttributeName: quizId
+        - AttributeName: id
           AttributeType: S
-        - AttributeName: questionRange
-          AttributeType: S
-      KeySchema:
-        - AttributeName: quizId
-          KeyType: HASH
-        - AttributeName: questionRange
-          KeyType: RANGE
-      TableName:
-        Fn::Sub: ${Stage}-${ServiceName}-questions
-      ProvisionedThroughput:
-        ReadCapacityUnits: 5
-        WriteCapacityUnits: 5
-  LeaderboardTable:
-    Type: AWS::DynamoDB::Table
-    Properties:
-      AttributeDefinitions:
-        - AttributeName: quizId
-          AttributeType: S
-        - AttributeName: teamRange
+        - AttributeName: range
           AttributeType: S
       KeySchema:
-        - AttributeName: quizId
+        - AttributeName: id
           KeyType: HASH
-        - AttributeName: teamRange
+        - AttributeName: range
           KeyType: RANGE
       TableName:
-        Fn::Sub: ${Stage}-${ServiceName}-leaderboard
+        Fn::Sub: ${Stage}-${ServiceName}-storage
       ProvisionedThroughput:
         ReadCapacityUnits: 5
         WriteCapacityUnits: 5
@@ -61,14 +43,7 @@ Outputs:
   QuizQuestionsTable:
     Description: The name of the quiz questions table
     Value:
-      Ref: QuizQuestionTable
+      Ref: QuizStorageTable
     Export:
       Name:
-        Fn::Sub: ${Stage}-${ServiceName}-questions
-  LeaderboardTable:
-    Description: The name of the leader board table
-    Value:
-      Ref: LeaderboardTable
-    Export:
-      Name:
-        Fn::Sub: ${Stage}-${ServiceName}-leaderboard
+        Fn::Sub: ${Stage}-${ServiceName}-storage

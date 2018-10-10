@@ -16,7 +16,7 @@ def upload():
     logger.info("Getting Quiz Table")
     # The table to load data into
     try:
-        quiz_question_table = os.environ["QUIZ_QUESTION_TABLE"]
+        quiz_question_table = os.environ["QUIZ_STORAGE_TABLE"]
     except KeyError:
         logger.critical("QUIZ_QUESTION_TABLE Environment Variable Is Not Set")
         sys.exit(1)
