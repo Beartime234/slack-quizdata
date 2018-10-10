@@ -62,18 +62,18 @@ def load_data_into_table(quiz_table, quiz_id: str, questions: dict):
             # Format the question correctly for how the quiz expects it and dynamodb will read it
             temp_question = question.copy()  # Copy the question so we don't return the copy and we keep it readable
             temp_question["id"] = f"{quiz_id}-question"  # Set the quiz id to be the quiz id specified by filename
-            temp_question["range"] = temp_question.pop("id")  # Set the id to be the question range
+            temp_question["range"] = temp_question.pop("question_id")  # Set the id to be the question range
             batch.put_item(Item=temp_question)  # Finally put the item in the database
     logger.info(f"Uploaded {len(questions)} questions to database")
     return questions  # Return the questions because we need to resave them
 
 
 def check_if_id_in_question(question):
-    return "id" in question.keys()
+    return "question_id" in question.keys()
 
 
 def add_id_to_question(question):
-    question["id"] = str(uuid4())
+    question["question_id"] = str(uuid4())
     return question
 
 

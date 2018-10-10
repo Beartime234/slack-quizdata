@@ -14,6 +14,7 @@ logger = logging.getLogger(__name__)
 
 logging.getLogger('botocore').setLevel(logging.CRITICAL)
 logging.getLogger('boto3').setLevel(logging.CRITICAL)
+logging.getLogger('urllib3').setLevel(logging.CRITICAL)
 
 # Get the question folder
 QUESTION_FOLDER = f"{dir_path}/../questions/"
