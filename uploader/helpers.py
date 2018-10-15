@@ -1,4 +1,5 @@
 import yaml
+import os
 
 
 def load_file(file_path) -> str:
@@ -39,3 +40,12 @@ def save_local_yaml(file_path, data) -> dict:
     """
     with open(file_path, 'w') as outfile:
         yaml.dump(data, outfile, default_flow_style=False)
+
+
+def is_ci_environ() -> bool:
+    """This checks if we are running in the CI environment
+
+    Returns:
+        A boolean of true if in the CI environment otherwise returns false
+    """
+    return "CI" in os.environ

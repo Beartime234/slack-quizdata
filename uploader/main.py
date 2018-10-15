@@ -32,16 +32,10 @@ def upload():
             full_file_path = f"{QUESTION_FOLDER}{filename}"
             file_data = helpers.load_local_yaml(full_file_path)["questions"]
             logger.info(f"Uploading {filename}")
-            data = load_data_into_table(
+            load_data_into_table(
                 quiz_table=quiz_table,
                 quiz_id=filename.split(".yml")[0],
                 questions=file_data
-            )
-            logger.info(f"Updating {filename}")
-            # This re-saves the file because some id's will be created.
-            helpers.save_local_yaml(
-                full_file_path,
-                {"questions": data}
             )
         else:
             continue
@@ -62,8 +56,6 @@ def load_data_into_table(quiz_table: boto3.resource, quiz_id: str, questions: li
     with quiz_table.batch_writer() as batch:
         # First check that all the questions are good
         for question in questions:
-            if not check_if_id_in_question(question):  # If it doesn't have an id assign one to it
-                add_id_to_question(question)
             # Format the question correctly for how the quiz expects it and dynamodb will read it
             temp_question = question.copy()  # Copy the question so we don't return the copy and we keep it readable
             temp_question["id"] = f"{quiz_id}-question"  # Set the quiz id to be the quiz id specified by filename
