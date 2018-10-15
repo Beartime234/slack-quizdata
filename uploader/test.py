@@ -1,3 +1,6 @@
+"""This file runs tests on the questions file. It does not perform tests on the code.
+but instead makes sure that the questions
+"""
 import logging
 import os
 import sys
@@ -13,13 +16,13 @@ def test():
     # Loop through each of the files in the questions of the directory
     logger.info("Starting check of questions")
     for filename in os.listdir(QUESTION_FOLDER):
-        if filename.endswith(".yml"):
+        if filename.endswith(".yml"):  # if the file ends with yml check the questions that exist
             full_file_path = f"{QUESTION_FOLDER}{filename}"
             file_data = helpers.load_local_yaml(full_file_path)["questions"]
             check_questions(file_data)
-        else:
+        else:  # Ignore anything else
             continue
-    logger.info("Finished test was successful")
+    logger.info("Test of questions was successful")
 
 
 def check_questions(questions: list):
@@ -33,7 +36,7 @@ def check_questions(questions: list):
             check_question(question)  # Check the question
         except exceptions.BadQuestion as bad_exception:  # If it's bad move to the next question and log it
             logger.critical(f"Question - {question} is bad {bad_exception}")
-            sys.exit(1)  # Exit badly and stored
+            sys.exit(1)  # Exit badly
 
 
 def check_question(question):
@@ -43,18 +46,18 @@ def check_question(question):
         question: The question itself
     """
     if "incorrect_answers" not in question.keys():
-        raise exceptions.BadQuestion("no incorrect Answers")
+        raise exceptions.BadQuestion("no incorrect Answers")  # First make sure there are some incorrect answers
     if "question" not in question.keys():
-        raise exceptions.BadQuestion("no question")
+        raise exceptions.BadQuestion("no question")  # Make sure that there is actually a question
     if "correct_answer" not in question.keys():
-        raise exceptions.BadQuestion("no correct answer")
+        raise exceptions.BadQuestion("no correct answer")  # Make sure there is a correct answer
     if len(question["incorrect_answers"]) > 4:
-        raise exceptions.BadQuestion(f"question has too many incorrect answers. {question}")
+        raise exceptions.BadQuestion(f"question has too many incorrect answers. {question}")  # Make sure there is no more then 4 correct answers
     for answer in question["incorrect_answers"]:
         if not isinstance(answer, str):
-            raise TypeError(f"unsupported type  - all answers must be strings. {question}")
+            raise TypeError(f"unsupported type  - all answers must be strings. {question}")  # Make sure that every incorrect answer is a string
     if not isinstance(question["correct_answer"], str):
-        raise TypeError(f"unsupported type  - all answers must be strings. {question}")
+        raise TypeError(f"unsupported type  - all answers must be strings. {question}")  # Make sure that the correct answer is a string
     return
 
 

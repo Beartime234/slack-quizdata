@@ -5,7 +5,7 @@ import yaml
 dir_path = os.path.dirname(os.path.realpath(__file__))
 
 # Set up logging
-with open(f"{dir_path}/uploader_config/logging.yml", "rt") as f:
+with open(f"{dir_path}/config/logging.yml", "rt") as f:
     config = yaml.safe_load(f.read())
     f.close()
 
