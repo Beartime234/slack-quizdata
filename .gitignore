@@ -226,3 +226,6 @@ $RECYCLE.BIN/
 
 # End of https://www.gitignore.io/api/osx,linux,python,windows,pycharm,visualstudiocode
 
+# Get rid of some unused templates
+
+/templates/unused/
