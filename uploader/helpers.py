@@ -1,5 +1,6 @@
 import yaml
 import os
+from uuid import uuid4
 
 
 def load_file(file_path) -> str:
@@ -49,3 +50,12 @@ def is_ci_environ() -> bool:
         A boolean of true if in the CI environment otherwise returns false
     """
     return "CI" in os.environ
+
+
+def generate_unique_id() -> str:
+    """This functions generates a unique id and returns it
+
+    Returns:
+        A string of the unique id
+    """
+    return str(uuid4())

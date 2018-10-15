@@ -102,7 +102,7 @@ questions:
   question_id: 8633139b-4cc2-4d73-a1cd-d4c771403325
 - correct_answer: '151'
   incorrect_answers:
-  - '150'
+  - 150
   - '149'
   - '148'
   question: What number is Mew in the Pokedex?
