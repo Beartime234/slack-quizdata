@@ -2,7 +2,11 @@
 """
 import yaml
 import os
+from sys import exit
 from uuid import uuid4
+import logging
+
+logger = logging.getLogger(__name__)
 
 
 def load_file(file_path) -> str:
@@ -112,3 +116,38 @@ def value_is_string(value) -> bool:
 
     """
     return isinstance(value, str)
+
+
+def is_question_file_format(filename: str) -> bool:
+    """Checks that a file is in a question file format
+
+    Args:
+        filename: The filename you are checking
+
+    Returns:
+        True if in a workable file format for questions False otherwise
+    """
+    return filename.endswith(".yml") or filename.endswith(".yaml")
+
+
+def get_quiz_storage_table_environment_variable():
+    quiz_question_table = ""
+    try:
+        quiz_question_table = os.environ["QUIZ_STORAGE_TABLE"]
+    except KeyError:
+        logger.critical("QUIZ_STORAGE_TABLE environment variable is not set.")
+        exit(1)
+    return quiz_question_table
+
+
+def get_question_data(file_path):
+    file_data = []
+    try:
+        file_data = load_local_yaml(file_path)["questions"]
+    except FileNotFoundError as missing_file_error:
+        logger.error(f"File: {file_path} could not be found. Error: {missing_file_error}")
+        exit(1)
+    except KeyError as missing_questions_map_error:
+        logger.error(f"File: {file_path} does not have any questions. Error: {missing_questions_map_error}")
+        exit(1)
+    return file_data
