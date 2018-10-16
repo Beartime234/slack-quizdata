@@ -19,4 +19,4 @@ logging.getLogger('urllib3').setLevel(logging.CRITICAL)
 # Get the question folder
 QUESTION_FOLDER = f"{dir_path}/../questions/"
 
-logger.info(f"Initialized Question Loader")
+logger.info(f"Initialized Question Uploader")
