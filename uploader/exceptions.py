@@ -1,3 +1,7 @@
+"""This file contains the exceptions if one of the questions is misconfigured.
+"""
+
+
 class BadQuestion(Exception):
     """Top level exception for a bad question
     """
@@ -40,6 +44,7 @@ class NoQuestion(BadQuestion):
 class NoCorrectAnswer(BadQuestion):
     """This exception represents that there was no question for this question
     """
+
     def __init__(self, question):
         message = f"Question {question} does not have a correct answer."
         super().__init__(message)
@@ -48,14 +53,16 @@ class NoCorrectAnswer(BadQuestion):
 class TooManyIncorrectAnswers(BadQuestion):
     """This exception represents that there was too many incorrect answers
     """
+
     def __init__(self, question):
         message = f"Question {question} has too many incorrect answers."
         super().__init__(message)
 
 
-class NotStringedQuestion(BadQuestion):
+class NotStringedQuestionValue(BadQuestion):
     """This exception represents that one of the question, incorrect answer or correct answer is not a string
     """
+
     def __init__(self, question):
         message = f"Question {question} one of the fields is not a string."
         super().__init__(message)
@@ -64,6 +71,7 @@ class NotStringedQuestion(BadQuestion):
 class DuplicateQuestionID(BadQuestion):
     """This exception represents that one of the questions has a duplicate id. This shouldn't happen but I check anyway
     """
+
     def __init__(self, question):
         message = f"Question {question} has the same ID as another question."
         super().__init__(message)

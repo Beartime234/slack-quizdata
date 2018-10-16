@@ -23,6 +23,10 @@ jobs:
             - ~/.local
             - ~/.cache
       - run:
-          name: Run Tests
+          name: Test Code
           command: |
-            pipenv run python -m uploader.test
+            pipenv run python -m pytest tests/ -vv
+      - run:
+          name: Validate Questions
+          command: |
+            pipenv run python -m uploader.question_validator

@@ -1,3 +1,5 @@
+"""This file contains helpers used in both uploading and testing the questions.
+"""
 import yaml
 import os
 from uuid import uuid4
@@ -59,3 +61,54 @@ def generate_unique_id() -> str:
         A string of the unique id
     """
     return str(uuid4())
+
+
+def check_if_id_in_question(question: dict) -> bool:
+    """This checks if there is a question id in the question.
+
+    Args:
+        question:
+
+    Returns:
+        If there is will return True otherwise will return false
+    """
+    return "question_id" in question.keys()
+
+
+def add_id_to_question(question: dict) -> dict:
+    """This function add's an id to the question.
+
+    Args:
+        question: The question dictionary
+
+    Returns:
+        The same dictionary with a new field question_id with a uuid4 attached to it.
+    """
+    question["question_id"] = str(uuid4())
+    return question
+
+
+def key_exists(dictionary: dict, key: str) -> bool:
+    """Checks that a key exists in a dictionary
+
+    Args:
+        dictionary: The dictionary that you are checking the key exists in
+        key: The key that you are looking for
+
+    Returns:
+        A boolean True if it exists False if not
+    """
+    return key in dictionary.keys()
+
+
+def value_is_string(value) -> bool:
+    """Checks that the value is a string
+
+    Args:
+        value: The value that you are checking is a string
+
+    Returns:
+        Either true or false depending on if the value is a string
+
+    """
+    return isinstance(value, str)

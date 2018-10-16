@@ -2,7 +2,6 @@
 """
 import logging.config
 import os
-from uuid import uuid4
 import sys
 
 import boto3
@@ -20,13 +19,12 @@ def upload():
     try:
         quiz_question_table = os.environ["QUIZ_STORAGE_TABLE"]
     except KeyError:
-        logger.critical("QUIZ_STORAGE_TABLE environment variable is not set. This is a problem with your configuration"
-                        "or build pipeline")
+        logger.critical("QUIZ_STORAGE_TABLE environment variable is not set. This is a problem with your configuration.")
         sys.exit(1)
     quiz_table = boto3.resource("dynamodb").Table(quiz_question_table)
     # The following uploads the information
     logger.info("Starting upload of questions")
-    filename: str  # Set this to a string cause we are using it that way
+    filename: str  # Set this to a string cause we are using it that way, otherwise it is treated as bytes
     for filename in os.listdir(QUESTION_FOLDER):
         if filename.endswith(".yml"):
             full_file_path = f"{QUESTION_FOLDER}{filename}"
@@ -39,7 +37,7 @@ def upload():
             )
         else:
             continue
-    logger.info("Finished uploading questions to database")
+    logger.info("Successfully uploaded questions to database")
 
 
 def load_data_into_table(quiz_table: boto3.resource, quiz_id: str, questions: list) -> object:
@@ -63,31 +61,6 @@ def load_data_into_table(quiz_table: boto3.resource, quiz_id: str, questions: li
             batch.put_item(Item=temp_question)  # Finally put the item in the database
     logger.info(f"Uploaded {len(questions)} questions to database")
     return questions  # Return the questions because we need to resave them
-
-
-def check_if_id_in_question(question: dict) -> bool:
-    """This checks if there is a question id in the question.
-
-    Args:
-        question:
-
-    Returns:
-        If there is will return True otherwise will return false
-    """
-    return "question_id" in question.keys()
-
-
-def add_id_to_question(question: dict) -> dict:
-    """This function add's an id to the question.
-
-    Args:
-        question: The question dictionary
-
-    Returns:
-        The same dictionary with a new field question_id with a uuid4 attached to it.
-    """
-    question["question_id"] = str(uuid4())
-    return question
 
 
 if __name__ == '__main__':
