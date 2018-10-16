@@ -4,6 +4,7 @@ from tests.unit.test_values import question_examples
 
 test_question = question_examples.good_question
 
+
 def test_check_incorrect_answer_exists():
     assert question_checks.check_incorrect_answer_exists(test_question) is None
     test_question_error = test_question.copy()

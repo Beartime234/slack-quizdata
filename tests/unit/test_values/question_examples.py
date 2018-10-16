@@ -8,3 +8,7 @@ good_question = {
     "question": "Which of the following is a Pokemon?",
     "question_id": "dad387e2-959a-4aba-9ef6-d99a8ba9bfbf"
 }
+
+good_question_list = [
+    good_question
+]

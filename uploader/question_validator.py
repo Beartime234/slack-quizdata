@@ -28,7 +28,7 @@ def test():
                 )
         else:  # Ignore anything else
             continue
-    logger.info("Test of questions was successful. No errors were found should be able to upload them.")
+    logger.info("Test of questions was successful. Questions are valid.")
 
 
 def check_questions(questions: list):
@@ -36,6 +36,9 @@ def check_questions(questions: list):
 
     Args:
         questions: The questions list
+
+    Returns:
+        The questions list with any addeded Id's to it
     """
     id_list = []
     for question in questions:

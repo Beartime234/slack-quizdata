@@ -229,3 +229,4 @@ $RECYCLE.BIN/
 # Get rid of some unused templates
 
 /templates/unused/
+/scripts  # Ignore personal scripts that I use to deploy stuff
