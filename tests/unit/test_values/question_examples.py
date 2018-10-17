@@ -12,7 +12,7 @@ good_question = {
 test_quiz_id = "testquiz"
 
 good_question_configured = good_question.copy()
-good_question_configured["id"] = "testquiz-questions"
+good_question_configured["id"] = "testquiz-question"
 good_question_configured["range"] = good_question_configured.pop("question_id")
 
 good_question_list = [

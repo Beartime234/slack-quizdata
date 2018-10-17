@@ -14,9 +14,9 @@ def test_configure_question_for_upload():
 
 
 def test_get_question_id():
-    assert question_updater.get_question_id(test_quiz_id) is "testquiz-question"
+    assert question_updater.get_question_id(test_quiz_id) == "testquiz-question"
 
 
 def test_get_question_range():
     question_id = "random"
-    assert question_updater.get_question_range(question_id) is question_id
+    assert question_updater.get_question_range(question_id) == question_id
