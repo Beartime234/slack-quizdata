@@ -30,3 +30,7 @@ jobs:
           name: Validate Questions
           command: |
             pipenv run python -m uploader.question_validator
+      - run:
+          name: Update Database
+          command: |
+            pipenv run python -m uploader.question_updater
