@@ -107,3 +107,10 @@ questions:
   - '148'
   question: What number is Mew in the Pokedex?
   question_id: 363854ce-75ad-49c9-b70a-1c12ec42034f
+- correct_answer: Turtwig
+  incorrect_answers:
+  - Absol
+  - Ekans
+  - Togedemaru
+  question: Which of these Pokemon is a starter Pokemon?
+  question_id: 5d1535ac-e8f7-4cca-bec1-045a33e1ba91
