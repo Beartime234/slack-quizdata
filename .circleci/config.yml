@@ -1,16 +1,8 @@
-# Python CircleCI 2.0 configuration file
-#
-# Check https://circleci.com/docs/2.0/language-python/ for more details
-#
 version: 2
 jobs:
-  build:
+  test:
     docker:
       - image: circleci/python:3.6.4
-    branches:
-      only:
-        - master
-        - /feature-.*/
     working_directory: ~/repo
     steps:
       - checkout
@@ -34,7 +26,41 @@ jobs:
           name: Validate Questions
           command: |
             pipenv run python -m uploader.question_validator
-      - run:
-          name: Update Database
-          command: |
-            pipenv run python -m uploader.question_updater
+  build:
+    docker:
+    - image: circleci/python:3.6.4
+    working_directory: ~/repo
+    steps:
+    - checkout
+    - restore_cache:
+        keys:
+        - cache-{{ checksum "Pipfile.lock" }}
+        - cache-
+    - run:
+        name: Install dependencies
+        command: pipenv sync --dev
+    - save_cache:
+        key: cache-{{ checksum "Pipfile.lock" }}
+        paths:
+        - ~/.local
+        - ~/.cache
+    - run:
+        name: Update Database
+        command: |
+          pipenv run python -m uploader.question_updater
+workflows:
+  version: 2
+  build_and_test:
+    jobs:
+      - test:
+          filters:
+            branches:
+              only:
+                - master
+                - feature/.*
+      - build:
+          requires:
+            - test
+          filters:
+            branches:
+              only: master
