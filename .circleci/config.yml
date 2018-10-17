@@ -7,6 +7,10 @@ jobs:
   build:
     docker:
       - image: circleci/python:3.6.4
+    branches:
+      only:
+        - master
+        - /feature-.*/
     working_directory: ~/repo
     steps:
       - checkout
