@@ -107,3 +107,11 @@ questions:
   - '148'
   question: What number is Mew in the Pokedex?
   question_id: 363854ce-75ad-49c9-b70a-1c12ec42034f
+- correct_answer: Turtwig
+  incorrect_answers:
+  - Buneary
+  - Absol
+  - Togedemaru
+  - Dratini
+  question: Which of these Pokemon is a 'starter' Pokemon?
+  question_id: 9868c657-cf87-4d95-8b0c-afde0558b36e
