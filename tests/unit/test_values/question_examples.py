@@ -9,6 +9,12 @@ good_question = {
     "question_id": "dad387e2-959a-4aba-9ef6-d99a8ba9bfbf"
 }
 
+test_quiz_id = "testquiz"
+
+good_question_configured = good_question.copy()
+good_question_configured["id"] = "testquiz-questions"
+good_question_configured["range"] = good_question_configured.pop("question_id")
+
 good_question_list = [
     good_question
 ]
