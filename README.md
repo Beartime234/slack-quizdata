@@ -1,70 +1,89 @@
 # Slack Quiz Data
 
 
-This project holds the questions for the library of slack quizzes. The
-current quizzes that are held from here are
+This repository holds questions for the following slack quizzes
 
 - [pokequiz](https://pokequiz.xyz)
 
 ## Getting Started
 
-These instructions will get you a copy of the project up and running on
-your local machine for development and testing purposes. See deployment
-for notes on how to deploy the project on a live system.
+If you would like to submit your own question or make changes to the current
+questions you can find them under the [questions](https://github.com/Beartime234/slack-quizdata/tree/master/questions) directory.
+For more instructions on how to submit your own questions view docs.
+
+The project has two main parts to it. The 'uploader' which is python code responsible
+for uploading and validating the questions to the database when you push to master.
+As well as the quiz questions which are YAML based files which store quiz question
+information for a range of quizzes.
 
 ### Prerequisites
 
-What things you need to install the software and how to install them
+The 'uploader' runs on Python 3+ so make sure you have that installed.
+You will also need [pipenv](https://pipenv.readthedocs.io/en/latest/) installed.
+
+You can install pipenv using brew
 
 ```
-Give examples
+brew install pipenv
 ```
 
 ### Installing
 
-A step by step series of examples that tell you how to get a development env running
+This project uses [pipenv](https://pipenv.readthedocs.io/en/latest/) for dependency management.
 
-Say what the step will be
-
-```
-Give the example
-```
-
-And repeat
+To install the required packages run the following command
 
 ```
-until finished
+pipenv sync --dev
 ```
 
-End with an example of getting some data out of the system or using it for a little demo
+## Running The Tests
 
-## Running the tests
+### Question Validator
 
-Explain how to run the automated tests for this system
-
-### Break down into end to end tests
-
-Explain what these tests test and why
+To run the question validator to make sure your questions are valid before
+submitting them run the following command from the root directory.
 
 ```
-Give an example
+pipenv run python -m uploader.question_validator
+```
+
+### Uploader Tests
+
+To run the unit tests on the uploader code run the following from
+the root directory.
+
+```
+pipenv run python -m pytest tests/ -vv
 ```
 
 ## Deployment
 
-Add additional notes about how to deploy this on a live system
+To deploy the code into the database you would run the following command
+from the root directory.
+
+```
+pipenv run python -m uploader.question_updater
+```
+
+but this will not work unless you have set up your own database. If your
+pull request has been approved and merged to master this code will run
+to move the questions into the quiz question table. So you shouldn't have
+to worry about it unless there is an issue with it.
 
 ## Built With
 
-* [Dropwizard](http://www.dropwizard.io/1.0.2/docs/) - The web framework used
-* [Maven](https://maven.apache.org/) - Dependency Management
-* [ROME](https://rometools.github.io/rome/) - Used to generate RSS Feeds
+* [Slack API](http://www.api.slack.com)
+* [Python Slack Client](https://slackapi.github.io/python-slackclient/)
+* [YAML](http://yaml.org)
 
 ## Contributing
 
-Please read [CONTRIBUTING.md](https://gist.github.com/PurpleBooth/b24679402957c63ec426) for details on how to add questions, and the process for submitting pull requests.
+Please read [CONTRIBUTING.md](https://gist.github.com/PurpleBooth/b24679402957c63ec426)
+for details on how to add questions, change the updating code and the
+process for submitting pull requests.
 
 ## Authors
 
-* **Joshua Eaton** - *Initial work* - [Beartime234](https://github.com/beartime234)
+* **Joshua Eaton** - *Initial work and owner* - [Beartime234](https://github.com/beartime234)
 
