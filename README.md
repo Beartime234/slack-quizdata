@@ -85,5 +85,5 @@ process for submitting pull requests.
 
 ## Authors
 
-* **Joshua Eaton** - *Initial work and owner* - [Beartime234](https://github.com/beartime234)
+* **Joshua Eaton** - *Owner* - [Beartime234](https://github.com/beartime234)
 
