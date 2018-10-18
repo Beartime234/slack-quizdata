@@ -1,4 +1,4 @@
-questions: # Top level map this must exist
+questions: # Top level map this must exist in a questions file
 # Below example of a good question
 # you could make a change to these as well if you felt necessary and the next time there is a deployment
 # it will update the question
@@ -6,8 +6,8 @@ questions: # Top level map this must exist
   id: a123b4c5-678d-9e0f-abc1-23456d789e01  # The questions id
   incorrect_answers: # A list of the correct answers max is 4 min is 1
   - Catapult
-  - Catapult
-  - Catapult
+  - Flying Pigs
+  - Ballista
   question: What is the best seige weapon?
 # Below is an example of a new question
 # if you wanted to add a new question you could copy the following and change accordingly.
