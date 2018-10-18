@@ -6,6 +6,10 @@ name = "pypi"
 [packages]
 pyyaml = "*"
 "boto3" = "*"
+prompt-toolkit = "*"
+termcolor = "*"
+pyfiglet = "*"
+colorama = "*"
 
 [dev-packages]
 pytest = "*"
