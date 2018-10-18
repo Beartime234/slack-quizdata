@@ -18,7 +18,7 @@ information for a range of quizzes.
 
 ### Prerequisites
 
-The 'uploader' runs on Python 3+ so make sure you have that installed.
+The 'uploader' runs on Python 3.6+ so make sure you have that installed.
 You will also need [pipenv](https://pipenv.readthedocs.io/en/latest/) installed.
 
 You can install pipenv using brew
