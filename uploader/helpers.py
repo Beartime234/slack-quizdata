@@ -130,6 +130,18 @@ def is_question_file_format(filename: str) -> bool:
     return filename.endswith(".yml") or filename.endswith(".yaml")
 
 
+def get_quiz_files(question_folder):
+    """Gets quiz files from the question folder
+
+    Args:
+        question_folder: The question folder
+
+    Returns:
+        A list of files that are applicable for questions
+    """
+    return list(filter(lambda a: is_question_file_format(a), os.listdir(question_folder)))
+
+
 def get_quiz_storage_table_environment_variable() -> str:
     """Gets you the environment variable QUIZ_STORAGE_TABLE
 

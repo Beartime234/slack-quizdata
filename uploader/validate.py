@@ -18,18 +18,15 @@ def test():
     """
     # Loop through each of the files in the questions of the directory
     logger.info("Starting validation check of questions.")
-    for filename in os.listdir(QUESTION_FOLDER):
-        if helpers.is_question_file_format(filename):  # if the file ends with yml check the questions that exist
-            full_file_path = f"{QUESTION_FOLDER}{filename}"
-            file_data = helpers.get_question_data(full_file_path)
-            logger.info(f"Checking {filename}")
-            updated_questions = check_questions(file_data)
-            # This re-saves the file if we are not in build because some question id's will be created.
-            # if they didn't have one.
-            if not helpers.is_ci_environ():
-                save_questions_file(full_file_path, updated_questions)
-        else:  # Ignore anything else
-            continue
+    for filename in helpers.get_quiz_files(QUESTION_FOLDER):
+        full_file_path = f"{QUESTION_FOLDER}{filename}"
+        file_data = helpers.get_question_data(full_file_path)
+        logger.info(f"Checking {filename}")
+        updated_questions = check_questions(file_data)
+        # This re-saves the file if we are not in build because some question id's will be created.
+        # if they didn't have one.
+        if not helpers.is_ci_environ():
+            save_questions_file(full_file_path, updated_questions)
     logger.info("Test of questions was successful. Questions are valid.")
 
 

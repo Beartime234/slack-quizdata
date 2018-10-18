@@ -45,7 +45,7 @@ To run the question validator to make sure your questions are valid before
 submitting them run the following command from the root directory.
 
 ```
-pipenv run python -m uploader.question_validator
+pipenv run python -m uploader.validate
 ```
 
 ### Uploader Tests
@@ -63,7 +63,7 @@ To deploy the code into the database you would run the following command
 from the root directory.
 
 ```
-pipenv run python -m uploader.question_updater
+pipenv run python -m uploader.update
 ```
 
 but this will not work unless you have set up your own database. If your

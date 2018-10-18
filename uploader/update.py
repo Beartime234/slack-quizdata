@@ -19,19 +19,15 @@ def upload():
     quiz_table = boto3.resource("dynamodb").Table(quiz_question_table)
     # The following uploads the information
     logger.info("Starting upload of questions")
-    filename: str
-    for filename in os.listdir(QUESTION_FOLDER):
-        if helpers.is_question_file_format(filename):
-            full_file_path = f"{QUESTION_FOLDER}{filename}"
-            file_data = helpers.get_question_data(full_file_path)
-            logger.info(f"Uploading {filename}")
-            load_data_into_table(
-                quiz_table=quiz_table,
-                quiz_id=filename.split(".")[0],
-                questions=file_data
-            )
-        else:
-            continue
+    for filename in helpers.get_quiz_files(QUESTION_FOLDER):
+        full_file_path = f"{QUESTION_FOLDER}{filename}"
+        file_data = helpers.get_question_data(full_file_path)
+        logger.info(f"Uploading {filename}")
+        load_data_into_table(
+            quiz_table=quiz_table,
+            quiz_id=filename.split(".")[0],
+            questions=file_data
+        )
     logger.info("Successfully uploaded questions to database")
 
 
