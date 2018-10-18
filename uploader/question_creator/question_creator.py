@@ -5,19 +5,23 @@ from __future__ import unicode_literals
 
 from prompt_toolkit import PromptSession
 from prompt_toolkit.completion import WordCompleter
-from prompt_toolkit.validation import Validator, ValidationError
-from prompt_toolkit.application import run_in_terminal
 from prompt_toolkit.key_binding import KeyBindings
+from prompt_toolkit.validation import Validator, ValidationError
 from pyfiglet import figlet_format
+
 from uploader.helpers import get_quiz_files
-
-
 
 
 class QuestionCreator(object):
     intro_message_color = "yellow"
 
-    def __init__(self, question_folder, creator_name):
+    def __init__(self, question_folder: str, creator_name: str = "Question Creator"):
+        """Initializer for Question Creator Obj
+
+        Args:
+            question_folder: The folder which the question yaml lives in
+            creator_name: The name of the question creator
+        """
         self.question_folder = question_folder
         self.creator_name = creator_name
         self.prompt_session = PromptSession()
@@ -28,15 +32,22 @@ class QuestionCreator(object):
             event.app.exit()
 
     def run(self):
+        """Runs the app
+        """
         self.print_intro_message()
         quiz_id = self.request_quiz_id()
+        self.ask_for_questions(quiz_id)
 
     def print_intro_message(self):
+        """Prints the introduction message
+        """
         print(figlet_format(self.creator_name))
         print("Press Control + Q at any time to quit")
         print("\n\n")  # Print some new lines
 
     def request_quiz_id(self):
+        """Runs the prompts for getting the quiz id the user wishes to work with=
+        """
         available_quizzes_list = get_quiz_files(self.question_folder)  # First get the applicable quiz files
         striped_available_quizzes_list = [s[:s.rindex(".")] for s in available_quizzes_list]  # Then strip the endings
         available_quizzes_string = ", ".join(
@@ -49,6 +60,9 @@ class QuestionCreator(object):
                                              completer=quiz_id_completer, validator=quiz_id_validator,
                                              validate_while_typing=True, key_bindings=self.bindings)
         return quiz_id
+
+    def ask_for_questions(self, quiz_id):
+        pass
 
 
 class QuizIdValidator(Validator):
