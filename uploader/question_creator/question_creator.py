@@ -3,29 +3,58 @@ for them
 """
 from __future__ import unicode_literals
 
-import sys
-
 from prompt_toolkit import PromptSession
-from colorama import init
-from termcolor import cprint
+from prompt_toolkit.completion import WordCompleter
+from prompt_toolkit.validation import Validator, ValidationError
+from prompt_toolkit.application import run_in_terminal
+from prompt_toolkit.key_binding import KeyBindings
 from pyfiglet import figlet_format
 from uploader.helpers import get_quiz_files
-from uploader import QUESTION_FOLDER
 
-init(strip=not sys.stdout.isatty())  # strip colors if stdout is redirected
+
 
 
 class QuestionCreator(object):
-    creator_name = "Slack Question Creator"
     intro_message_color = "yellow"
+
+    def __init__(self, question_folder, creator_name):
+        self.question_folder = question_folder
+        self.creator_name = creator_name
+        self.prompt_session = PromptSession()
+        self.bindings = KeyBindings()
+
+        @self.bindings.add('c-q')  # This just makes the program exit nice when the user holds down control and Q
+        def _(event):
+            event.app.exit()
 
     def run(self):
         self.print_intro_message()
-        available_quizzes = get_quiz_files(QUESTION_FOLDER)
-        prompt_session = PromptSession()
-        print(f"Available Quizzes {available_quizzes}")
-        quiz_id = prompt_session.prompt("What quiz would you like to add a question to? ")
-        print("You said: %s" % quiz_id)
+        quiz_id = self.request_quiz_id()
 
     def print_intro_message(self):
-        cprint(figlet_format(self.creator_name, ), self.intro_message_color, attrs=['bold'])
+        print(figlet_format(self.creator_name))
+        print("Press Control + Q at any time to quit")
+        print("\n\n")  # Print some new lines
+
+    def request_quiz_id(self):
+        available_quizzes_list = get_quiz_files(self.question_folder)  # First get the applicable quiz files
+        striped_available_quizzes_list = [s[:s.rindex(".")] for s in available_quizzes_list]  # Then strip the endings
+        available_quizzes_string = ", ".join(
+            striped_available_quizzes_list)  # Join them to print which ones are available
+
+        print(f"Available Quizzes: {available_quizzes_string}")
+        quiz_id_completer = WordCompleter(striped_available_quizzes_list)
+        quiz_id_validator = QuizIdValidator(striped_available_quizzes_list)
+        quiz_id = self.prompt_session.prompt("What quiz would you like to add a question to? ",
+                                             completer=quiz_id_completer, validator=quiz_id_validator,
+                                             validate_while_typing=True, key_bindings=self.bindings)
+        return quiz_id
+
+
+class QuizIdValidator(Validator):
+    def __init__(self, quiz_id_list):
+        self.quiz_id_list = quiz_id_list
+
+    def validate(self, document):
+        if document.text not in self.quiz_id_list:
+            raise ValidationError(message="Sorry that is not a valid quiz.")
