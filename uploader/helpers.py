@@ -130,24 +130,47 @@ def is_question_file_format(filename: str) -> bool:
     return filename.endswith(".yml") or filename.endswith(".yaml")
 
 
-def get_quiz_storage_table_environment_variable():
-    quiz_question_table = ""
+def get_quiz_storage_table_environment_variable() -> str:
+    """Gets you the environment variable QUIZ_STORAGE_TABLE
+
+    Raises:
+        KeyError if it cannot find the QUIZ_STORAGE_TABLE variable
+
+    Returns:
+        THe QUIZ_STORAGE_TABLE environment variable
+    """
+    quiz_question_table: str = ""
     try:
         quiz_question_table = os.environ["QUIZ_STORAGE_TABLE"]
     except KeyError:
-        logger.critical("QUIZ_STORAGE_TABLE environment variable is not set.")
+        logger.error("QUIZ_STORAGE_TABLE environment variable is not set.")
         exit(1)
     return quiz_question_table
 
 
-def get_question_data(file_path):
-    file_data = []
+def get_question_data(file_path: str) -> list:
+    """Gets the question data from a question data file in yaml format
+
+    It expects a top level dictionary of a yaml file called questions
+
+    Args:
+        file_path: The questions files path
+
+    Doesn't actually raise it but catches and exits
+    Raises:
+        FileNotFoundError: If it cannot find the file path
+        KeyError: If it cannot find the top level dictionary of questions
+
+    Returns:
+        The file data for
+    """
+    question_data: list = []
     try:
-        file_data = load_local_yaml(file_path)["questions"]
+        question_data = load_local_yaml(file_path)["questions"]
     except FileNotFoundError as missing_file_error:
         logger.error(f"File: {file_path} could not be found. Error: {missing_file_error}")
         exit(1)
     except KeyError as missing_questions_map_error:
         logger.error(f"File: {file_path} does not have any questions. Error: {missing_questions_map_error}")
         exit(1)
-    return file_data
+    return question_data

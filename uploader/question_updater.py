@@ -15,10 +15,11 @@ def upload():
     logger.info("Starting Upload")
     logger.info("Getting Quiz Table")
     # The table to load data into
-    quiz_question_table = helpers.get_quiz_storage_table_environment_variable()
+    quiz_question_table: str = helpers.get_quiz_storage_table_environment_variable()
     quiz_table = boto3.resource("dynamodb").Table(quiz_question_table)
     # The following uploads the information
     logger.info("Starting upload of questions")
+    filename: str
     for filename in os.listdir(QUESTION_FOLDER):
         if helpers.is_question_file_format(filename):
             full_file_path = f"{QUESTION_FOLDER}{filename}"
@@ -51,7 +52,7 @@ def load_data_into_table(quiz_table: boto3.resource, quiz_id: str, questions: li
     return
 
 
-def configure_question_for_upload(question: dict, quiz_id) -> dict:
+def configure_question_for_upload(question: dict, quiz_id: str) -> dict:
     """This function configures the question correctly for what the dynamodb expects.
 
     This is to make sure the YAML is readable for a user but the table knows what each value is.
@@ -69,7 +70,7 @@ def configure_question_for_upload(question: dict, quiz_id) -> dict:
     return temp_question
 
 
-def get_question_id(quiz_id) -> str:
+def get_question_id(quiz_id: str) -> str:
     """Gets the question id from the quiz id
 
     Args:
@@ -81,7 +82,7 @@ def get_question_id(quiz_id) -> str:
     return f"{quiz_id}-question"
 
 
-def get_question_range(question_id) -> str:
+def get_question_range(question_id: str) -> str:
     """The questions range which is just the questions id
 
     Args:
