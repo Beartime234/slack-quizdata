@@ -1,5 +1,4 @@
 AWSTemplateFormatVersion: '2010-09-09'
-Transform: AWS::Serverless-2016-10-31
 Description: |
   Deploys Slack Quiz Data Tables
 
@@ -18,6 +17,8 @@ Parameters:
     - test
     - prod
 
+Conditions:
+  CreateProdResources: !Equals [ !Ref Stage, prod ]
 
 Resources:
   QuizStorageTable:
@@ -38,6 +39,89 @@ Resources:
       ProvisionedThroughput:
         ReadCapacityUnits: 5
         WriteCapacityUnits: 5
+      PointInTimeRecoverySpecification:
+        PointInTimeRecoveryEnabled: True
+  ScalingRole:
+    Type: "AWS::IAM::Role"
+    Condition: CreateProdResources
+    Properties:
+      AssumeRolePolicyDocument:
+        Version: "2012-10-17"
+        Statement:
+        - Effect: Allow
+          Principal:
+            Service:
+            - "application-autoscaling.amazonaws.com"
+          Action:
+          - "sts:AssumeRole"
+      Path: "/"
+      Policies:
+      - PolicyName: DynamoDBAutoScalingPermissions
+        PolicyDocument:
+          Version: "2012-10-17"
+          Statement:
+          - Effect: Allow
+            Action:
+            - "dynamodb:DescribeTable"
+            - "dynamodb:UpdateTable"
+            - "cloudwatch:PutMetricAlarm"
+            - "cloudwatch:DescribeAlarms"
+            - "cloudwatch:GetMetricStatistics"
+            - "cloudwatch:SetAlarmState"
+            - "cloudwatch:DeleteAlarms"
+            Resource: "*"
+  QuizTableWriteCapacityScalableTarget:
+    Condition: CreateProdResources
+    Type: "AWS::ApplicationAutoScaling::ScalableTarget"
+    Properties:
+     MaxCapacity: 15
+     MinCapacity: 5
+     ResourceId:
+       Fn::Sub: table/${QuizStorageTable}
+     RoleARN:
+       Fn::Sub: ${ScalingRole.Arn}
+     ScalableDimension: "dynamodb:table:WriteCapacityUnits"
+     ServiceNamespace: dynamodb
+  QuizTableWriteScalingPolicy:
+    Condition: CreateProdResources
+    Type: "AWS::ApplicationAutoScaling::ScalingPolicy"
+    Properties:
+     PolicyName: WriteAutoScalingPolicy
+     PolicyType: TargetTrackingScaling
+     ScalingTargetId:
+      Ref: QuizTableWriteCapacityScalableTarget
+     TargetTrackingScalingPolicyConfiguration:
+      TargetValue: 70
+      ScaleInCooldown: 60
+      ScaleOutCooldown: 60
+      PredefinedMetricSpecification:
+       PredefinedMetricType: DynamoDBWriteCapacityUtilization
+  QuizTableReadCapacityScalableTarget:
+    Condition: CreateProdResources
+    Type: "AWS::ApplicationAutoScaling::ScalableTarget"
+    Properties:
+     MaxCapacity: 15
+     MinCapacity: 5
+     ResourceId:
+       Fn::Sub: table/${QuizStorageTable}
+     RoleARN:
+       Fn::Sub: ${ScalingRole.Arn}
+     ScalableDimension: "dynamodb:table:ReadCapacityUnits"
+     ServiceNamespace: dynamodb
+  QuizTableReadScalingPolicy:
+    Condition: CreateProdResources
+    Type: "AWS::ApplicationAutoScaling::ScalingPolicy"
+    Properties:
+     PolicyName: ReadAutoScalingPolicy
+     PolicyType: TargetTrackingScaling
+     ScalingTargetId:
+      Ref: QuizTableReadCapacityScalableTarget
+     TargetTrackingScalingPolicyConfiguration:
+      TargetValue: 70
+      ScaleInCooldown: 60
+      ScaleOutCooldown: 60
+      PredefinedMetricSpecification:
+       PredefinedMetricType: DynamoDBReadCapacityUtilization
 
 Outputs:
   QuizQuestionsTable:
