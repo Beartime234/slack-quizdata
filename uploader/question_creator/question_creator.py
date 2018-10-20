@@ -24,9 +24,10 @@ class QuestionCreator(object):
         """
         self.question_folder = question_folder
         self.creator_name = creator_name
-        self.quiz_id_prompt_session = PromptSession()
-        self.question_prompt_session = PromptSession()
         self.bindings = KeyBindings()
+        self.quiz_id_prompt_session = PromptSession(key_bindings=self.bindings)
+        self.question_prompt_session = PromptSession(key_bindings=self.bindings)
+        self.incorrect_answer_session = PromptSession(key_bindings=self.bindings)
 
         @self.bindings.add('c-q')  # This just makes the program exit nice when the user holds down control and Q
         def _(event):
@@ -62,7 +63,7 @@ class QuestionCreator(object):
         quiz_id_validator = QuizIdValidator(striped_available_quizzes_list)
         quiz_id = self.quiz_id_prompt_session.prompt("What quiz would you like to add a question to? ",
                                                      completer=quiz_id_completer, validator=quiz_id_validator,
-                                                     validate_while_typing=True, key_bindings=self.bindings)
+                                                     validate_while_typing=True)
         return quiz_id
 
     def ask_for_question(self):
@@ -80,7 +81,7 @@ class QuestionCreator(object):
         return question
 
     def ask_for_question_question(self):
-        return self.question_prompt_session.prompt("Question: ")
+        return str(self.question_prompt_session.prompt("Question: "))
 
     def ask_for_incorrect_answer_amount(self):
         return int(self.question_prompt_session.prompt("How many incorrect answers: "))
@@ -88,11 +89,11 @@ class QuestionCreator(object):
     def ask_for_incorrect_answers(self, incorrect_answer_amount: int):
         incorrect_answers = []
         for count in range(1, incorrect_answer_amount + 1):  # Loop for how may incorrect answers there is going to be
-            incorrect_answers.append(self.question_prompt_session.prompt(f"Incorrect Answer {count}: "))
+            incorrect_answers.append(str(self.question_prompt_session.prompt(f"Incorrect Answer {count}: ")))
         return incorrect_answers
 
     def ask_for_correct_answer(self):
-        return self.question_prompt_session.prompt("Correct Answer: ")
+        return str(self.question_prompt_session.prompt("Correct Answer: "))
 
     def get_quiz_file(self, quiz_id):
         quiz_files = get_quiz_files(self.question_folder)
