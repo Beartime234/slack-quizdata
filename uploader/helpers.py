@@ -49,6 +49,21 @@ def save_local_yaml(file_path, data) -> dict:
         yaml.dump(data, outfile, default_flow_style=False)
 
 
+def save_question_to_question_file(question: dict, file_path):
+    """Adds a question to a yaml file
+
+    Args:
+        question:
+        file_path:
+
+    Returns:
+
+    """
+    file_data = load_local_yaml(file_path)
+    file_data["questions"].append(question)
+    save_local_yaml(file_path, file_data)
+
+
 def is_ci_environ() -> bool:
     """This checks if we are running in the CI environment
 
@@ -168,7 +183,7 @@ def get_question_data(file_path: str) -> list:
     Args:
         file_path: The questions files path
 
-    Doesn't actually raise it but catches and exits
+    Doesn't actually raise the following but catches and logs it
     Raises:
         FileNotFoundError: If it cannot find the file path
         KeyError: If it cannot find the top level dictionary of questions
