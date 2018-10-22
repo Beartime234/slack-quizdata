@@ -168,3 +168,24 @@ questions:
   - 'False'
   question: Mewtwo appears before Mew in the Pokedex
   question_id: f2ffeccf-6b48-4350-b1fd-95a82e05ca79
+- correct_answer: '55'
+  incorrect_answers:
+  - '45'
+  - '50'
+  - '60'
+  question: What level does Pupitar evolve into Tyranitar?
+  question_id: 095f0a03-d930-4789-bf0f-0d125d8ebec5
+- correct_answer: Meganium
+  incorrect_answers:
+  - Megan
+  - Meinanium
+  - Bayganium
+  question: What Pokemon does Bayleef evolve into?
+  question_id: da67a3ff-716f-408b-9b10-548952d253ca
+- correct_answer: Trading
+  incorrect_answers:
+  - Level 30
+  - Level up while in surfing
+  - Level 36
+  question: How do you evolve Poliwhirl into Politoed?
+  question_id: 5ddeca21-5e79-4d2e-877f-1bdf3b3095e9

@@ -8,6 +8,7 @@ from prompt_toolkit.completion import WordCompleter
 from prompt_toolkit.key_binding import KeyBindings
 from prompt_toolkit.validation import Validator, ValidationError
 from pyfiglet import figlet_format
+from prompt_toolkit.auto_suggest import AutoSuggestFromHistory
 
 from uploader.helpers import get_quiz_files, generate_unique_id, save_question_to_question_file
 
@@ -42,7 +43,7 @@ class QuestionCreator(object):
         go_again = True
         while go_again is True:
             question = self.ask_for_question()
-            print("Saving Question...")
+            print("Saved Question")
             save_question_to_question_file(question, f"{self.question_folder}{question_file}")
             go_again = self.ask_if_go_again()
         print("Okay Bye :)")
@@ -85,19 +86,20 @@ class QuestionCreator(object):
         return question
 
     def ask_for_question_question(self):
-        return str(self.question_prompt_session.prompt("Question: "))
+        return str(self.question_prompt_session.prompt("Question: ", key_bindings=self.bindings))
 
     def ask_for_incorrect_answer_amount(self):
-        return int(self.question_prompt_session.prompt("How many incorrect answers: "))
+        return int(self.question_prompt_session.prompt("How many incorrect answers: ", key_bindings=self.bindings))
 
     def ask_for_incorrect_answers(self, incorrect_answer_amount: int):
         incorrect_answers = []
         for count in range(1, incorrect_answer_amount + 1):  # Loop for how may incorrect answers there is going to be
-            incorrect_answers.append(str(self.question_prompt_session.prompt(f"Incorrect Answer {count}: ")))
+            incorrect_answers.append(str(self.question_prompt_session.prompt(f"> Incorrect Answer {count}: ",
+                                                                             key_bindings=self.bindings)))
         return incorrect_answers
 
     def ask_for_correct_answer(self):
-        return str(self.question_prompt_session.prompt("Correct Answer: "))
+        return str(self.question_prompt_session.prompt("> Correct Answer: "))
 
     def get_quiz_file(self, quiz_id):
         quiz_files = get_quiz_files(self.question_folder)
