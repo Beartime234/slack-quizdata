@@ -121,3 +121,50 @@ questions:
   - '45'
   question: What level does Dratini evolve into Dragonair?
   question_id: 7fc27e70-a7d4-49d0-b0fc-cee2823d0d92
+- correct_answer: '025'
+  incorrect_answers:
+  - '001'
+  - '020'
+  - '006'
+  - '030'
+  question: What number in the national Pokedex is Pikachu?
+  question_id: 91cc16fb-eb93-4c5f-909e-1f9fe323c61f
+- correct_answer: Moon Stone
+  incorrect_answers:
+  - Thunder Stone
+  - Dawn Stone
+  - Fire Stone
+  question: Which stone causes Celfairy to evolve?
+  question_id: 0e0026b1-ebe8-497e-8a8c-0a6da5f515b5
+- correct_answer: Trade
+  incorrect_answers:
+  - Level 32
+  - Use Moon Stone
+  - Level 40
+  question: How does Kadabra evolve into Alakazam?
+  question_id: efa0405d-49d8-45ab-9887-8eab67fed9be
+- correct_answer: '8'
+  incorrect_answers:
+  - '6'
+  - '7'
+  - '9'
+  question: How many evolutions does Eevee have?
+  question_id: 073c079d-951c-4586-8213-b263592ab9b1
+- correct_answer: Bug/Steel
+  incorrect_answers:
+  - Bug/Dragon
+  - Steel
+  - Grass/Steel
+  question: What type/s does the Pokemon Genesect have?
+  question_id: 22a25a20-e345-47ad-9869-2b4a06bb3a9e
+- correct_answer: Articuno
+  incorrect_answers:
+  - Zapdos
+  - Moltres
+  question: Which of the three legendary birds appears first in the Pokedex?
+  question_id: a93427dc-fafb-47b7-98a5-16ed5d6f1577
+- correct_answer: 'True'
+  incorrect_answers:
+  - 'False'
+  question: Mewtwo appears before Mew in the Pokedex
+  question_id: f2ffeccf-6b48-4350-b1fd-95a82e05ca79

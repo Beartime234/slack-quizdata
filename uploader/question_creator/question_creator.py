@@ -39,9 +39,13 @@ class QuestionCreator(object):
         self.print_intro_message()
         quiz_id = self.request_quiz_id()
         question_file = self.get_quiz_file(quiz_id)
-        question = self.ask_for_question()
-        print("Saving Question...")
-        save_question_to_question_file(question, f"{self.question_folder}{question_file}")
+        go_again = True
+        while go_again is True:
+            question = self.ask_for_question()
+            print("Saving Question...")
+            save_question_to_question_file(question, f"{self.question_folder}{question_file}")
+            go_again = self.ask_if_go_again()
+        print("Okay Bye :)")
 
     def print_intro_message(self):
         """Prints the introduction message
@@ -103,6 +107,19 @@ class QuestionCreator(object):
             print(f"Could not find {quiz_id} question file. It may have been deleted.")
             exit(1)
 
+    def ask_if_go_again(self):
+        allowed_go_again_values = ["yes", "no"]
+        go_again_completer = WordCompleter(allowed_go_again_values)
+        go_again_validator = GoAgainValidator(allowed_go_again_values)
+        go_again: str = self.quiz_id_prompt_session.prompt("Would you like to add another question? ",
+                                                           completer=go_again_completer, validator=go_again_validator,
+                                                           key_bindings=self.bindings)
+        go_again = go_again.lower()
+        if go_again == "yes":
+            return True
+        else:
+            return False
+
 
 class QuizIdValidator(Validator):
     def __init__(self, quiz_id_list):
@@ -111,3 +128,12 @@ class QuizIdValidator(Validator):
     def validate(self, document):
         if document.text not in self.quiz_id_list:
             raise ValidationError(message="Sorry that is not a valid quiz.")
+
+
+class GoAgainValidator(Validator):
+    def __init__(self, allowed_values):
+        self.allowed_values = allowed_values
+
+    def validate(self, document):
+        if document.text not in self.allowed_values:
+            raise ValidationError(message="Must be either yes or no.")
