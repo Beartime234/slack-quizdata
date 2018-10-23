@@ -293,3 +293,74 @@ questions:
   - It doesn't mean anything
   question: What does the word Pokemon mean?
   question_id: 89b0b610-5b33-4d45-bb1c-b5b88c779130
+- correct_answer: Pride
+  incorrect_answers:
+  - Mystic
+  - Instinct
+  - Valor
+  question: Which of thse is NOT a Pokemon GO team?
+  question_id: 93fa28dc-dfbf-420f-a122-2aa078f7cd0b
+- correct_answer: CP
+  incorrect_answers:
+  - Level
+  - EV
+  - Pokemon Type
+  question: 'How is power level determined in Pokemon Go? '
+  question_id: cb8a4625-0277-4d56-8867-424ef3969398
+- correct_answer: Master Ball
+  incorrect_answers:
+  - Ultra Ball
+  - Dive Ball
+  - Great Ball
+  question: What is the most effective Pokeball?
+  question_id: 44c11ede-76b2-4f37-9fa6-760b03cca314
+- correct_answer: '8'
+  incorrect_answers:
+  - '6'
+  - '10'
+  - '9'
+  question: In generation 1 how many gym badges must you collect before you challenge
+    the elite 4?
+  question_id: 4fe94a5d-c1fe-4a81-bb20-bd7a5a4965de
+- correct_answer: Ghost
+  incorrect_answers:
+  - Fighting
+  - Dark
+  - Fairy
+  question: What type of attacks are Normal type Pokemon immune to?
+  question_id: ccd5c865-b9be-4446-beb6-ba657ced086c
+- correct_answer: Bleeding
+  incorrect_answers:
+  - Paralysis
+  - Burn
+  - Frozen
+  question: Which of these is NOT a status ailment in Pokemon?
+  question_id: 36c17206-5804-41d0-bcae-370672c02596
+- correct_answer: Dragon Stone
+  incorrect_answers:
+  - Fire Stone
+  - Thunder Stone
+  - Moon Stone
+  question: Which of the following is NOT an evolutionary stone?
+  question_id: 7bb75cac-5f8b-4d88-9156-74746d5b9254
+- correct_answer: Kalos
+  incorrect_answers:
+  - Jhoto
+  - Kanto
+  - Hoenn
+  question: What region is the setting for Pokemon X and Y?
+  question_id: 71a8977b-05b5-4b52-8548-efbfc6585bc4
+- correct_answer: Normal
+  incorrect_answers:
+  - Dragon
+  - Psychic
+  - Ghost
+  question: What type of move is Hyper Beam?
+  question_id: 251e5b5c-ad0e-423c-ba37-e7e98d100e9d
+- correct_answer: Ghost/Dragon
+  incorrect_answers:
+  - Psychic/Dragon
+  - Ghost/Psychic
+  - Dark/Dragon
+  question: What type of Pokemon is the legendary Giratina?
+  question_id: e263b81d-1be9-4295-8d3b-7ab93a9b032d
