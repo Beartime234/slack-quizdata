@@ -1,7 +1,7 @@
 """Application for creating questions
 """
 
-from uploader.question_creator import QuestionCreator
+from uploader.creator import QuestionCreator
 from uploader import QUESTION_FOLDER
 
 if __name__ == '__main__':

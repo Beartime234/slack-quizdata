@@ -2,10 +2,10 @@
 but instead makes sure that the questions are valid.
 """
 import logging
-import os
 
 from uploader import QUESTION_FOLDER
-from uploader import helpers, question_checks
+from uploader import helpers
+from uploader.checker import question_checks
 
 logger = logging.getLogger(__name__)
 

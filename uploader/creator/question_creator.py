@@ -10,7 +10,7 @@ from prompt_toolkit.validation import Validator, ValidationError
 from pyfiglet import figlet_format
 from prompt_toolkit.auto_suggest import AutoSuggestFromHistory
 
-from uploader.helpers import get_quiz_files, generate_unique_id, save_question_to_question_file
+from uploader.helpers import get_quiz_files, generate_unique_id, save_question_to_question_file, form_question
 
 
 class QuestionCreator(object):
@@ -46,14 +46,13 @@ class QuestionCreator(object):
             print("Saved Question")
             save_question_to_question_file(question, f"{self.question_folder}{question_file}")
             go_again = self.ask_if_go_again()
-        print("Okay Bye :)")
 
     def print_intro_message(self):
         """Prints the introduction message
         """
         print(figlet_format(self.creator_name))
         print("Press Control + Q at any time to quit")
-        print("\n\n")  # Print some new lines
+        print("\n")
 
     def request_quiz_id(self):
         """Runs the prompts for getting the quiz id the user wishes to work with=
@@ -71,37 +70,59 @@ class QuestionCreator(object):
                                                      validate_while_typing=True)
         return quiz_id
 
-    def ask_for_question(self):
+    def ask_for_question(self) -> dict:
+        """Main holder for asking a question. Will prompt the user for all relevant information for the question
+        Returns:
+            The dictionary of the well formed question
+        """
         question = self.ask_for_question_question()
         incorrect_answers_count = self.ask_for_incorrect_answer_amount()
         incorrect_answers = self.ask_for_incorrect_answers(incorrect_answers_count)
         correct_answer = self.ask_for_correct_answer()
         question_id = generate_unique_id()
-        question = {
-            "question": question,
-            "question_id": question_id,
-            "incorrect_answers": incorrect_answers,
-            "correct_answer": correct_answer
-        }
-        return question
+        return form_question(question, question_id, incorrect_answers, correct_answer)
 
     def ask_for_question_question(self):
-        return str(self.question_prompt_session.prompt("Question: ", key_bindings=self.bindings))
+        """Asks the user for their question
+        """
+        return str(self.question_prompt_session.prompt("Question: "))
 
     def ask_for_incorrect_answer_amount(self):
-        return int(self.question_prompt_session.prompt("How many incorrect answers: ", key_bindings=self.bindings))
+        """Asks the user for how many incorrect answers they can have
+        """
+        return int(self.question_prompt_session.prompt("How many incorrect answers: "))
 
     def ask_for_incorrect_answers(self, incorrect_answer_amount: int):
+        """Ask for the users incorrect answers for the question
+
+        Args:
+            incorrect_answer_amount: The amount of incorrect answers
+
+        Returns:
+            A list of the users incorrect answers
+        """
         incorrect_answers = []
         for count in range(1, incorrect_answer_amount + 1):  # Loop for how may incorrect answers there is going to be
-            incorrect_answers.append(str(self.question_prompt_session.prompt(f"> Incorrect Answer {count}: ",
-                                                                             key_bindings=self.bindings)))
+            incorrect_answers.append(str(self.question_prompt_session.prompt(f"> Incorrect Answer {count}: ")))
         return incorrect_answers
 
     def ask_for_correct_answer(self):
-        return str(self.question_prompt_session.prompt("> Correct Answer: "))
+        """Asks the user for the correct answer
 
-    def get_quiz_file(self, quiz_id):
+        Returns:
+            The correct answer as a string
+        """
+        return str(self.question_prompt_session.prompt("Correct Answer: "))
+
+    def get_quiz_file(self, quiz_id: str):
+        """Gets the appropriate quiz_file based on id
+
+        Args:
+            quiz_id: The quiz id
+
+        Returns:
+            The filename of the appropriate quiz
+        """
         quiz_files = get_quiz_files(self.question_folder)
         try:
             return [i for i in quiz_files if i.startswith(quiz_id)][0]
@@ -109,15 +130,20 @@ class QuestionCreator(object):
             print(f"Could not find {quiz_id} question file. It may have been deleted.")
             exit(1)
 
-    def ask_if_go_again(self):
-        allowed_go_again_values = ["yes", "no"]
+    def ask_if_go_again(self) -> bool:
+        """Asks the user if they want to go again
+
+        Returns:
+            A boolean of true and false if they want to go again
+        """
+        allowed_go_again_values = ["yes", "y", "no", "n"]
         go_again_completer = WordCompleter(allowed_go_again_values)
         go_again_validator = GoAgainValidator(allowed_go_again_values)
         go_again: str = self.quiz_id_prompt_session.prompt("Would you like to add another question? ",
                                                            completer=go_again_completer, validator=go_again_validator,
-                                                           key_bindings=self.bindings)
+                                                           validate_while_typing=False)
         go_again = go_again.lower()
-        if go_again == "yes":
+        if go_again == "yes" or go_again == "y":
             return True
         else:
             return False
@@ -138,4 +164,4 @@ class GoAgainValidator(Validator):
 
     def validate(self, document):
         if document.text not in self.allowed_values:
-            raise ValidationError(message="Must be either yes or no.")
+            raise ValidationError(message="Must be either yes/y or no/n.")

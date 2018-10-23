@@ -201,3 +201,23 @@ def get_question_data(file_path: str) -> list:
         logger.error(f"File: {file_path} does not have any questions. Error: {missing_questions_map_error}")
         exit(1)
     return question_data
+
+
+def form_question(question: str, question_id: str, incorrect_answers: list, correct_answer: str) -> dict:
+    """This forms a question correctly when supplied all parameters
+
+    Args:
+        question: The question
+        question_id: The questions id
+        incorrect_answers: The list of incorrect answers
+        correct_answer: The correct answer
+
+    Returns:
+        A dictionary of the well formed question
+    """
+    return {
+            "question": question,
+            "question_id": question_id,
+            "incorrect_answers": incorrect_answers,
+            "correct_answer": correct_answer
+        }

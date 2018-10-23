@@ -185,7 +185,111 @@ questions:
 - correct_answer: Trading
   incorrect_answers:
   - Level 30
-  - Level up while in surfing
+  - Level up while surfing
   - Level 36
   question: How do you evolve Poliwhirl into Politoed?
   question_id: 5ddeca21-5e79-4d2e-877f-1bdf3b3095e9
+- correct_answer: Red
+  incorrect_answers:
+  - Blue
+  - Green
+  - Yellow
+  question: What color is shiny Gyrados?
+  question_id: ed8bf724-802f-45ee-ad93-c7dcb02c2085
+- correct_answer: Bulbasaur
+  incorrect_answers:
+  - Pikachu
+  - Charmander
+  - Squirtle
+  question: What Pokemon is number 001 in the national Pokedex?
+  question_id: 37cd5438-ea77-43b1-b156-1cc32e03244e
+- correct_answer: Kanto
+  incorrect_answers:
+  - Johto
+  - Hoenn
+  - Kalos
+  question: Which of the following Pokemon regions was the first?
+  question_id: 247dd730-b8aa-4b1b-a29e-3584e5989e9c
+- correct_answer: Gen 2
+  incorrect_answers:
+  - Gen 1
+  - Gen 3
+  - Gen 4
+  question: What generation of Pokemon is Delibird from?
+  question_id: 01be569e-39da-46ef-b8f6-dd072820c4c8
+- correct_answer: Leveling up with max beauty
+  incorrect_answers:
+  - Leveling to 30
+  - Giving a Prism Scale
+  - Leveling to 36
+  question: Which of the following methods would evolve Feebas into Milotic?
+  question_id: 051db538-02ff-4e79-ae7e-8c17d8fe3cff
+- correct_answer: Gen 1
+  incorrect_answers:
+  - Gen 2
+  - Gen 3
+  - Gen 5
+  question: What generation of Pokemon is Snorlax from?
+  question_id: 916af17b-630b-46ba-85c5-a51ca6d077f1
+- correct_answer: The Victory Pokemon
+  incorrect_answers:
+  - Gen 4 Pikachu
+  - Fire Pikachu
+  - The Vicinity Pokemon
+  question: What is the Pokemon Victini also known as?
+  question_id: 9a964d45-6edb-4b9e-8bea-ab87b4c02c24
+- correct_answer: Land/Sky
+  incorrect_answers:
+  - Sea/Land
+  - Sky/Sea
+  question: What forms can the Pokemon Shaymin have?
+  question_id: fb6946f4-fa6e-4240-8cf1-3a4710f8d8db
+- correct_answer: '18'
+  incorrect_answers:
+  - '22'
+  - '24'
+  - '26'
+  question: At what level does Poochyena evolve into Mightyena?
+  question_id: b8f4f193-e9dc-4bdc-b752-6584421e24c7
+- correct_answer: Arceus
+  incorrect_answers:
+  - Heatran
+  - Mew
+  - Lugia
+  question: Which of these Pokemon is known as the God Pokemon?
+  question_id: 2af920b6-d2fa-4ce2-8092-00f2a6c4b36f
+- correct_answer: '6'
+  incorrect_answers:
+  - '4'
+  - '5'
+  - '7'
+  question: In what generation did of Pokemon was the Fairy type introduced?
+  question_id: 0e626cce-53d0-4606-883f-751ebcc815de
+- correct_answer: Poison/Ground
+  incorrect_answers:
+  - Poison/Fighting
+  - Ground/Fighting
+  - Fairy/Poison
+  question: What type of Pokmeon is Nidoking?
+  question_id: c84306bf-4333-4e8a-88ad-5a7c9cfb3407
+- correct_answer: Trade while holding Up Grade
+  incorrect_answers:
+  - Level 32
+  - Trade while holding a Dubious Disc
+  - You can't
+  question: How do you evolve Porygon into Porygon2?
+  question_id: b776b733-cf14-4aab-8932-76e78df41602
+- correct_answer: Trade while holding Dubious Disc
+  incorrect_answers:
+  - Trade while holding Up Grade
+  - Level 32
+  - You can't
+  question: How do you evolve Porygon 2 into Porygon-Z
+  question_id: 21d6031d-df7a-4eff-86bc-62e65ade0ab6
+- correct_answer: Pocket Monsters
+  incorrect_answers:
+  - Poking the Monster
+  - A Japanese folklore monster
+  - It doesn't mean anything
+  question: What does the word Pokemon mean?
+  question_id: 89b0b610-5b33-4d45-bb1c-b5b88c779130

@@ -1,4 +1,5 @@
-from uploader import helpers, exceptions
+from uploader import helpers
+from uploader.checker import exceptions
 
 
 def check_incorrect_answer_exists(question: dict) -> None:

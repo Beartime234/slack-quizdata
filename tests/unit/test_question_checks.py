@@ -1,5 +1,5 @@
 import pytest
-from uploader import question_checks, exceptions
+from uploader.checker import question_checks, exceptions
 from tests.unit.test_values import question_examples
 
 test_question = question_examples.good_question
