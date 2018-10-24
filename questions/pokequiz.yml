@@ -483,11 +483,10 @@ questions:
   - '15'
   question: How much HP does a regular potion heal?
   question_id: 5b94dccc-e055-4b0f-ace0-258d99317807
-- correct_answer: None
+- correct_answer: Bug
   incorrect_answers:
   - Normal
   - Grass
-  - Bug
   question: Which one of these types is super effective against Dark?
   question_id: ef92b2a5-a8dd-4a84-9b9f-35bc6e797b82
 - correct_answer: Ground
