@@ -637,3 +637,31 @@ questions:
   - Snivy
   question: Which of these Pokemon is a Kanto starter?
   question_id: 01ee71fb-b157-490c-a14a-3b8125733b0c
+- correct_answer: Ditto
+  incorrect_answers:
+  - Snorlax
+  - Machamp
+  - Smeargle
+  question: Which Pokemon's only move is Transform?
+  question_id: 7ab7d585-59eb-4269-a558-6a16c1531a9e
+- correct_answer: Water
+  incorrect_answers:
+  - Fire
+  - Grass
+  - Ice
+  question: What type of Pokemon is Goldeen?
+  question_id: 732ba657-8627-4bf5-bb2b-a9a487f70065
+- correct_answer: Arbok
+  incorrect_answers:
+  - Snakes
+  - Cobra
+  - Snekk
+  question: What is the evolved fom of Ekans?
+  question_id: 3a070e20-9743-42ae-89e6-5f0b0ad5d655
+- correct_answer: Blaziken
+  incorrect_answers:
+  - Combusken
+  - Flamikin
+  - Blazing
+  question: What is Torchic's final evolution?
+  question_id: 9c4b8e58-b11c-4625-8ee8-c5329add75e1
