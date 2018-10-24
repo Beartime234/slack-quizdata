@@ -594,6 +594,7 @@ questions:
   - Krabman
   - Catakrab
   - Krabalicous
+  - Krabby Patties
   question: What does the Pokemon Krabby evolve into?
   question_id: 39c3e961-6b3d-47b0-8c90-2881647082f0
 - correct_answer: 'True'
@@ -614,7 +615,7 @@ questions:
 - correct_answer: 'False'
   incorrect_answers:
   - 'True'
-  question: Dragon is super effective against fairy Pokemon
+  question: Dragon types are super effective against fairy Pokemon
   question_id: 557467a7-5c09-4a09-87d2-cd05bde6c811
 - correct_answer: Delcatty
   incorrect_answers:
@@ -656,7 +657,7 @@ questions:
   - Snakes
   - Cobra
   - Snekk
-  question: What is the evolved fom of Ekans?
+  question: What is the evolved form of Ekans?
   question_id: 3a070e20-9743-42ae-89e6-5f0b0ad5d655
 - correct_answer: Blaziken
   incorrect_answers:
@@ -665,3 +666,27 @@ questions:
   - Blazing
   question: What is Torchic's final evolution?
   question_id: 9c4b8e58-b11c-4625-8ee8-c5329add75e1
+- correct_answer: Moon Stone
+  incorrect_answers:
+  - Level 26
+  - Level 28
+  - Level up with max beauty
+  question: How do you evolve Skitty into Delcatty?
+  question_id: ffae0349-9bbb-4d2d-a3f9-78d30e044a6b
+- correct_answer: 'True'
+  incorrect_answers:
+  - 'False'
+  question: Kangaskhan has a mega evolution
+  question_id: bb244586-e491-4f24-bbe3-8a12acd915df
+- correct_answer: '40'
+  incorrect_answers:
+  - '20'
+  - '50'
+  - '100'
+  question: How much damage does the move Dragon Rage deal?
+  question_id: 13e25a5a-b8a3-40ab-8f81-d186adc41311
+- correct_answer: 'True'
+  incorrect_answers:
+  - 'False'
+  question: Fire type moves are super effective against Steel Pokemon
+  question_id: 12e5c642-0eb8-40a7-8cf9-e5c321ee7441
