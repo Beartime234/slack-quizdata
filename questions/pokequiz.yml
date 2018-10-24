@@ -19,7 +19,7 @@ questions:
   - Dog
   - Rat
   - Bunny
-  question: What type of animal is Pikachu based of?
+  question: What type of animal is Pikachu based off?
   question_id: 3503c690-2550-4b1a-913f-f8ab4fa33728
 - correct_answer: Dialga
   incorrect_answers:
@@ -69,7 +69,7 @@ questions:
 - correct_answer: 'True'
   incorrect_answers:
   - 'False'
-  question: Lugia is of type Psychic/Flying
+  question: Lugia is Psychic/Flying type
   question_id: 068eeb72-f651-4d32-90bd-52574afd7e84
 - correct_answer: Ground
   incorrect_answers:
@@ -93,7 +93,7 @@ questions:
   - Eevee
   question: What does EV stand for?
   question_id: db97ee6f-45bf-4a34-b5a8-1aef839e7b44
-- correct_answer: Echnida
+- correct_answer: Echidna
   incorrect_answers:
   - Shrew
   - Rat
@@ -194,7 +194,7 @@ questions:
   - Blue
   - Green
   - Yellow
-  question: What color is shiny Gyrados?
+  question: What color is shiny Gyarados?
   question_id: ed8bf724-802f-45ee-ad93-c7dcb02c2085
 - correct_answer: Bulbasaur
   incorrect_answers:
@@ -263,7 +263,7 @@ questions:
   - '4'
   - '5'
   - '7'
-  question: In what generation did of Pokemon was the Fairy type introduced?
+  question: In what generation of Pokemon was the Fairy type introduced?
   question_id: 0e626cce-53d0-4606-883f-751ebcc815de
 - correct_answer: Poison/Ground
   incorrect_answers:
@@ -272,7 +272,7 @@ questions:
   - Fairy/Poison
   question: What type of Pokmeon is Nidoking?
   question_id: c84306bf-4333-4e8a-88ad-5a7c9cfb3407
-- correct_answer: Trade while holding Up Grade
+- correct_answer: Trade while holding Up-Grade
   incorrect_answers:
   - Level 32
   - Trade while holding a Dubious Disc
@@ -298,7 +298,7 @@ questions:
   - Mystic
   - Instinct
   - Valor
-  question: Which of thse is NOT a Pokemon GO team?
+  question: Which of these is NOT a Pokemon Go team?
   question_id: 93fa28dc-dfbf-420f-a122-2aa078f7cd0b
 - correct_answer: CP
   incorrect_answers:
@@ -369,14 +369,14 @@ questions:
   - Gabite
   - Gibchomp
   - Garite
-  question: What is the Pokemon Gible final form?
+  question: What is the Pokemon Gible's final form?
   question_id: 6fc81d7f-ac94-4297-a2f9-d77bc94ad292
 - correct_answer: Omanyte
   incorrect_answers:
   - Kabuto
   - Aerodatyl
   - Kabutops
-  question: What Pokemon can be resurrected form the Helix Fossil?
+  question: What Pokemon can be resurrected from the Helix Fossil?
   question_id: 99a515ca-3369-40bc-84f3-430693847083
 - correct_answer: Steel/Psychic
   incorrect_answers:
@@ -485,24 +485,17 @@ questions:
   question_id: 5b94dccc-e055-4b0f-ace0-258d99317807
 - correct_answer: None
   incorrect_answers:
-  - None
-  - None
-  - None
-  question: Which of these types is super effective aganist Dark?
-  question_id: 1362eda8-4489-4e08-8b10-3839d05bb09e
-- correct_answer: None
-  incorrect_answers:
   - Normal
   - Grass
   - Bug
-  question: Which one of these types is super effective aganist Dark?
+  question: Which one of these types is super effective against Dark?
   question_id: ef92b2a5-a8dd-4a84-9b9f-35bc6e797b82
 - correct_answer: Ground
   incorrect_answers:
   - Fire
   - Flying
   - Psychic
-  question: What type is super effective aganist fire?
+  question: What type is super effective against fire?
   question_id: e9757bfe-a4c5-4f1c-95f5-25cff8791106
 - correct_answer: Bug/Grass
   incorrect_answers:
@@ -567,3 +560,80 @@ questions:
   - Give Dusk Ball
   question: How do you evolve Haunter into Gengar?
   question_id: 96dd165e-e5fa-44c3-b25d-8655cbdbef94
+- correct_answer: Caterpie
+  incorrect_answers:
+  - Charmander
+  - Pikachu
+  - Weedle
+  question: In the Pokemon TV show what was the first pokemon that Ash caught himself?
+  question_id: 59495dd9-dc45-4316-8020-0d555d17c654
+- correct_answer: Ho-oh
+  incorrect_answers:
+  - Mew
+  - Lugia
+  - Moltres
+  question: In the Pokemon TV show what legendary Pokemon did Ash see on the first
+    day of his journey?
+  question_id: 015f0e34-4397-4be5-9e99-73c0eeb708cb
+- correct_answer: Munchlax
+  incorrect_answers:
+  - Minilax
+  - Loudlax
+  - Eatlax
+  question: What Pokemon does Snorlax evolve from?
+  question_id: 2b8c044a-d261-4dfe-818f-3c028c865fdf
+- correct_answer: Fire/Flying
+  incorrect_answers:
+  - Fire
+  - Dragon
+  - Fire/Dragon
+  question: What type/s of Pokemon is Charizard?
+  question_id: 0abcf27b-f8cd-4b01-b9fd-3013510ade5c
+- correct_answer: Kingler
+  incorrect_answers:
+  - Krabman
+  - Catakrab
+  - Krabalicous
+  question: What does the Pokemon Krabby evolve into?
+  question_id: 39c3e961-6b3d-47b0-8c90-2881647082f0
+- correct_answer: 'True'
+  incorrect_answers:
+  - 'False'
+  question: Electric type moves are super effective against water Pokemon
+  question_id: bc5122fc-3fb2-4c5b-bec0-65deb2e39fd1
+- correct_answer: 'True'
+  incorrect_answers:
+  - 'False'
+  question: Fighting type moves are super effective against dark Pokemon
+  question_id: 1cacb13d-eceb-420a-9253-054f73e24e30
+- correct_answer: 'False'
+  incorrect_answers:
+  - 'True'
+  question: Rock type moves are super effective against electric Pokemon
+  question_id: 091b3a48-de92-48fd-9624-76165bb2eb86
+- correct_answer: 'False'
+  incorrect_answers:
+  - 'True'
+  question: Dragon is super effective against fairy Pokemon
+  question_id: 557467a7-5c09-4a09-87d2-cd05bde6c811
+- correct_answer: Delcatty
+  incorrect_answers:
+  - MyKitty
+  - Mitty
+  - FeralKitty
+  question: What does the Pokemon Skitty evolve into?
+  question_id: f0585ede-c576-44ab-8729-d3589fbb3d52
+- correct_answer: Grimer
+  incorrect_answers:
+  - Mimer
+  - Suk
+  - Grimace
+  question: What Pokemon does Muk evolve from?
+  question_id: d794e170-2c66-4db1-8bc8-fe9abd393a3d
+- correct_answer: Charmander
+  incorrect_answers:
+  - Totodile
+  - Turtwig
+  - Snivy
+  question: Which of these Pokemon is a Kanto starter?
+  question_id: 01ee71fb-b157-490c-a14a-3b8125733b0c
