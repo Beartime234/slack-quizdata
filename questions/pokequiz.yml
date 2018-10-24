@@ -364,3 +364,143 @@ questions:
   - Dark/Dragon
   question: What type of Pokemon is the legendary Giratina?
   question_id: e263b81d-1be9-4295-8d3b-7ab93a9b032d
+- correct_answer: Garchomp
+  incorrect_answers:
+  - Gabite
+  - Gibchomp
+  - Garite
+  question: What is the Pokemon Gible final form?
+  question_id: 6fc81d7f-ac94-4297-a2f9-d77bc94ad292
+- correct_answer: Omanyte
+  incorrect_answers:
+  - Kabuto
+  - Aerodatyl
+  - Kabutops
+  question: What Pokemon can be resurrected form the Helix Fossil?
+  question_id: 99a515ca-3369-40bc-84f3-430693847083
+- correct_answer: Steel/Psychic
+  incorrect_answers:
+  - Water/Fairy
+  - Dragon/Fairy
+  - Fairy/Psychic
+  question: What type of Pokemon is Jirachi?
+  question_id: ffdeaf6c-dc31-466a-8b7d-1572cda174fb
+- correct_answer: Sleep Talk
+  incorrect_answers:
+  - Rest
+  - Sleep Powder
+  - Hypnosis
+  question: What move allows a Pokemon to attack while it's asleep?
+  question_id: 04e9f854-7ec5-40da-9cb4-9de5353e9d62
+- correct_answer: 'True'
+  incorrect_answers:
+  - 'False'
+  question: Lickitung can evolve into Lickylicky
+  question_id: 1c6a0ceb-c2db-4cb2-8fe9-480672e261f4
+- correct_answer: '22'
+  incorrect_answers:
+  - '20'
+  - '26'
+  - '24'
+  question: What level does Sandshrew evolve into Sandslash?
+  question_id: 29a36d87-9338-481e-847d-cf8889770b8a
+- correct_answer: Steel
+  incorrect_answers:
+  - Normal
+  - Ground
+  - Poison
+  question: What type is the move Gyro Ball?
+  question_id: f5582cd8-1a59-495a-b74d-f0bb751cb160
+- correct_answer: Psychic
+  incorrect_answers:
+  - Normal
+  - Ghost
+  - Rock
+  question: What type is the move Rest?
+  question_id: dad5a112-41bc-4dd7-aabd-ab25963b45f4
+- correct_answer: Rock/Ground
+  incorrect_answers:
+  - Rock
+  - Ground
+  - Rock/Fighting
+  question: What type/s is the Pokemon Golem?
+  question_id: 25563fbc-7e1a-46f9-bcfb-e42b831c40a2
+- correct_answer: Normal
+  incorrect_answers:
+  - Rock
+  - Ground
+  - Fighting
+  question: What type is the move Harden?
+  question_id: b015cba8-c6d8-43b9-8eb3-8f334d4c5265
+- correct_answer: 'True'
+  incorrect_answers:
+  - 'False'
+  question: There is a move called Heavy Slam
+  question_id: 4b42f0ef-a9e5-4a37-bf52-24501407536e
+- correct_answer: 'False'
+  incorrect_answers:
+  - 'True'
+  question: There is a move called Punching Time
+  question_id: f6e73bc6-0fb0-43e1-934c-3d4e0eeda55f
+- correct_answer: Ghost
+  incorrect_answers:
+  - Fighting
+  - Ground
+  - Psychic
+  question: What type is the move Curse?
+  question_id: be828001-b928-43c7-8f3e-0f6b480dfda9
+- correct_answer: Normal
+  incorrect_answers:
+  - Fighting
+  - Ghost
+  - Psychic
+  question: What type is the move Facade?
+  question_id: 24245efc-243c-4245-97d1-a7bee9993877
+- correct_answer: Sketch
+  incorrect_answers:
+  - Dig
+  - Tackle
+  - Facade
+  question: What is the only move Smeargle learns naturally?
+  question_id: 622bbbcf-858f-497f-b0e0-b166f7e48895
+- correct_answer: Psych Up
+  incorrect_answers:
+  - Imprison
+  - Heart Stamp
+  - Agility
+  question: Which of these moves is not a psychic type move?
+  question_id: 61b30efa-493e-43f3-bd94-27f968f577d9
+- correct_answer: Registeel
+  incorrect_answers:
+  - Bisharp
+  - Lairon
+  - Steelix
+  question: Which of these Pokemon is only steel type?
+  question_id: 9f5770b6-8b9f-4eb5-9674-68439488655f
+- correct_answer: '20'
+  incorrect_answers:
+  - '10'
+  - '15'
+  question: How much HP does a regular potion heal?
+  question_id: 5b94dccc-e055-4b0f-ace0-258d99317807
+- correct_answer: None
+  incorrect_answers:
+  - None
+  - None
+  - None
+  question: Which of these types is super effective aganist Dark?
+  question_id: 1362eda8-4489-4e08-8b10-3839d05bb09e
+- correct_answer: None
+  incorrect_answers:
+  - Normal
+  - Grass
+  - Bug
+  question: Which one of these types is super effective aganist Dark?
+  question_id: ef92b2a5-a8dd-4a84-9b9f-35bc6e797b82
+- correct_answer: Ground
+  incorrect_answers:
+  - Fire
+  - Flying
+  - Psychic
+  question: What type is super effective aganist fire?
+  question_id: e9757bfe-a4c5-4f1c-95f5-25cff8791106

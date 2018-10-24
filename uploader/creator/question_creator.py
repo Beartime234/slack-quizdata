@@ -28,7 +28,9 @@ class QuestionCreator(object):
         self.bindings = KeyBindings()
         self.quiz_id_prompt_session = PromptSession(key_bindings=self.bindings)
         self.question_prompt_session = PromptSession(key_bindings=self.bindings)
+        self.amount_of_incorrect_answer_session = PromptSession(key_bindings=self.bindings)
         self.incorrect_answer_session = PromptSession(key_bindings=self.bindings)
+        self.correct_answer_session = PromptSession(key_bindings=self.bindings)
 
         @self.bindings.add('c-q')  # This just makes the program exit nice when the user holds down control and Q
         def _(event):
@@ -39,6 +41,7 @@ class QuestionCreator(object):
         """
         self.print_intro_message()
         quiz_id = self.request_quiz_id()
+        print("\n")
         question_file = self.get_quiz_file(quiz_id)
         go_again = True
         while go_again is True:
@@ -65,9 +68,9 @@ class QuestionCreator(object):
         print(f"Available Quizzes: {available_quizzes_string}")
         quiz_id_completer = WordCompleter(striped_available_quizzes_list)
         quiz_id_validator = QuizIdValidator(striped_available_quizzes_list)
-        quiz_id = self.quiz_id_prompt_session.prompt("What quiz would you like to add a question to? ",
+        quiz_id = self.quiz_id_prompt_session.prompt("What quiz would you like to add questions to? ",
                                                      completer=quiz_id_completer, validator=quiz_id_validator,
-                                                     validate_while_typing=True)
+                                                     validate_while_typing=False)
         return quiz_id
 
     def ask_for_question(self) -> dict:
@@ -90,7 +93,9 @@ class QuestionCreator(object):
     def ask_for_incorrect_answer_amount(self):
         """Asks the user for how many incorrect answers they can have
         """
-        return int(self.question_prompt_session.prompt("How many incorrect answers: "))
+        completer = WordCompleter(["1", "2", "3", "4"])
+        return int(self.question_prompt_session.prompt("How many incorrect answers: ", completer=completer,
+                                                       validator=IncorrectAnswerValidator()))
 
     def ask_for_incorrect_answers(self, incorrect_answer_amount: int):
         """Ask for the users incorrect answers for the question
@@ -103,7 +108,7 @@ class QuestionCreator(object):
         """
         incorrect_answers = []
         for count in range(1, incorrect_answer_amount + 1):  # Loop for how may incorrect answers there is going to be
-            incorrect_answers.append(str(self.question_prompt_session.prompt(f"> Incorrect Answer {count}: ")))
+            incorrect_answers.append(str(self.incorrect_answer_session.prompt(f"> Incorrect Answer {count}: ")))
         return incorrect_answers
 
     def ask_for_correct_answer(self):
@@ -112,7 +117,7 @@ class QuestionCreator(object):
         Returns:
             The correct answer as a string
         """
-        return str(self.question_prompt_session.prompt("Correct Answer: "))
+        return str(self.correct_answer_session.prompt("Correct Answer: "))
 
     def get_quiz_file(self, quiz_id: str):
         """Gets the appropriate quiz_file based on id
@@ -154,8 +159,9 @@ class QuizIdValidator(Validator):
         self.quiz_id_list = quiz_id_list
 
     def validate(self, document):
-        if document.text not in self.quiz_id_list:
-            raise ValidationError(message="Sorry that is not a valid quiz.")
+        text = document.text
+        if text not in self.quiz_id_list:
+            raise ValidationError(message="Sorry that is not a valid quiz.", cursor_position=len(text))
 
 
 class GoAgainValidator(Validator):
@@ -163,5 +169,27 @@ class GoAgainValidator(Validator):
         self.allowed_values = allowed_values
 
     def validate(self, document):
-        if document.text not in self.allowed_values:
-            raise ValidationError(message="Must be either yes/y or no/n.")
+        text = document.text
+
+        if text not in self.allowed_values:
+            raise ValidationError(message="The input must be yes/y or no/n", cursor_position=len(text))
+
+
+class IncorrectAnswerValidator(Validator):
+    def validate(self, document):
+        text = document.text
+
+        if len(text) != 1:
+            raise ValidationError(message="Value should be between 1 - 4", cursor_position=len(text))
+
+        if text and not text.isdigit():  # Check if the entire thing is numberic/digits
+            for i, c in enumerate(text):
+                if not c.isdigit():
+                    raise ValidationError(message='This input contains non-numeric characters',
+                                          cursor_position=i)
+
+        if int(text) > 4 or int(text) < 1:
+            raise ValidationError(message="Value should be between 1 - 4", cursor_position=len(text))
+
+
+
