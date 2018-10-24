@@ -504,3 +504,66 @@ questions:
   - Psychic
   question: What type is super effective aganist fire?
   question_id: e9757bfe-a4c5-4f1c-95f5-25cff8791106
+- correct_answer: Bug/Grass
+  incorrect_answers:
+  - Bug
+  - Bug/Ghost
+  - Grass
+  question: What type/s is Parasect?
+  question_id: 47a8b1b2-bc1c-4a58-84ea-48c2329c0931
+- correct_answer: Rhydon
+  incorrect_answers:
+  - Pikachu
+  - Mew
+  - Charmander
+  question: What was the first Pokemon ever designed?
+  question_id: 99430c5b-bc1c-441a-97f0-7a8588602ce7
+- correct_answer: Water
+  incorrect_answers:
+  - Normal
+  - Steel
+  - Ground
+  question: Which of these types of Pokemon are NOT immune to another type?
+  question_id: 8720ab66-36fa-4ad5-9494-cbbf92376619
+- correct_answer: Heatran
+  incorrect_answers:
+  - Cresselia
+  - Landorus
+  - Suicune
+  question: Which of these legendary Pokemon can be male or female?
+  question_id: bb0a8151-3a3e-4c54-99e0-f0f13c86e8f1
+- correct_answer: Level 25
+  incorrect_answers:
+  - Level 26
+  - Trade while holding Ink Pack
+  - Water Stone
+  question: How does Remoraid evolve into Octillery?
+  question_id: 492969f1-ffd2-4cf4-a322-04b4720bebfb
+- correct_answer: '5'
+  incorrect_answers:
+  - '4'
+  - '6'
+  - '10'
+  question: What level does Metapod evolve into Butterfree?
+  question_id: 7e5c7d67-af23-4438-8618-3d4d705abb06
+- correct_answer: '5'
+  incorrect_answers:
+  - '4'
+  - '8'
+  - '12'
+  question: What level does Weedle evolve into Kakuna?
+  question_id: fe80b25c-124b-4078-ac0d-3b243e5670ad
+- correct_answer: Ice/Water
+  incorrect_answers:
+  - Water
+  - Ice/Ground
+  - Water/Ground
+  question: What type/s of Pokemon is Dewgong?
+  question_id: 6f051486-10f2-409c-8478-792f4e872f5d
+- correct_answer: Trade
+  incorrect_answers:
+  - Level 30
+  - Level 36
+  - Give Dusk Ball
+  question: How do you evolve Haunter into Gengar?
+  question_id: 96dd165e-e5fa-44c3-b25d-8655cbdbef94

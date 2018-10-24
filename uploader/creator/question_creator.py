@@ -8,7 +8,6 @@ from prompt_toolkit.completion import WordCompleter
 from prompt_toolkit.key_binding import KeyBindings
 from prompt_toolkit.validation import Validator, ValidationError
 from pyfiglet import figlet_format
-from prompt_toolkit.auto_suggest import AutoSuggestFromHistory
 
 from uploader.helpers import get_quiz_files, generate_unique_id, save_question_to_question_file, form_question
 
@@ -94,8 +93,8 @@ class QuestionCreator(object):
         """Asks the user for how many incorrect answers they can have
         """
         completer = WordCompleter(["1", "2", "3", "4"])
-        return int(self.question_prompt_session.prompt("How many incorrect answers: ", completer=completer,
-                                                       validator=IncorrectAnswerValidator()))
+        return int(self.amount_of_incorrect_answer_session.prompt("How many incorrect answers: ", completer=completer,
+                                                                  validator=IncorrectAnswerValidator()))
 
     def ask_for_incorrect_answers(self, incorrect_answer_amount: int):
         """Ask for the users incorrect answers for the question
@@ -190,6 +189,3 @@ class IncorrectAnswerValidator(Validator):
 
         if int(text) > 4 or int(text) < 1:
             raise ValidationError(message="Value should be between 1 - 4", cursor_position=len(text))
-
-
-
