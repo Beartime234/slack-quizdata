@@ -39,6 +39,15 @@ Resources:
       ProvisionedThroughput:
         ReadCapacityUnits: 5
         WriteCapacityUnits: 5
+      Tags:
+      - Key: service
+        Value:
+          Ref: ServiceName
+      - Key: app:stage
+        Value:
+          Ref: Stage
+      - Key: app:type
+        Value: slack-quiz
   ScalingRole:
     Type: AWS::IAM::Role
     Condition: CreateProdResources
