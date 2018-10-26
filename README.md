@@ -63,6 +63,10 @@ submitting them run the following command from the root directory.
 pipenv run python -m uploader.validate
 ```
 
+This will check that your questions are valid and follow question guidelines.
+
+TODO add question guidelines doc
+
 ### Uploader Tests
 
 To run the unit tests on the uploader code run the following from
@@ -74,14 +78,26 @@ pipenv run python -m pytest tests/ -vv
 
 ## Deployment
 
+You need to have two environment variables set before deploying the questions. As
+it is built for CICD pipelines and shouldn't really be used directly.
+
+AWS_PROFILE: Your local AWS profile which gives you access to the quiz data
+storage table.
+
+QUIZ_STORAGE_TABLE: The name of the table that you will be uploading the questions
+too. For information on how to set this up see Database.
+
 To deploy the code into the database you would run the following command
-from the root directory.
+from the root directory. Make sure you have validated the questions before
+uploading them.
 
 ```
 pipenv run python -m uploader.update
 ```
 
-but this will not work unless you have set up your own database. You can
+### Database
+
+but this will not work unless you have a database. You can
 run your own version of the database by building [templates/data.yml](templates/data.yml)
 If your pull request has been approved and merged to master this code will run
 to move the questions into the quiz question table. So you shouldn't have

@@ -182,7 +182,7 @@ questions:
   - Bayganium
   question: What Pokemon does Bayleef evolve into?
   question_id: da67a3ff-716f-408b-9b10-548952d253ca
-- correct_answer: Trading
+- correct_answer: Trading with King's rock
   incorrect_answers:
   - Level 30
   - Level up while surfing
