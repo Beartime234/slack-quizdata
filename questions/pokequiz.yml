@@ -538,7 +538,7 @@ questions:
   - '10'
   question: What level does Metapod evolve into Butterfree?
   question_id: 7e5c7d67-af23-4438-8618-3d4d705abb06
-- correct_answer: '5'
+- correct_answer: '7'
   incorrect_answers:
   - '4'
   - '8'
